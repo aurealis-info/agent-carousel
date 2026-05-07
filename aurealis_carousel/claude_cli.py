@@ -13,7 +13,7 @@ import shutil
 import subprocess
 from typing import Optional
 
-CLAUDE_TIMEOUT_SECONDS = 180
+CLAUDE_TIMEOUT_SECONDS = 360   # large prompts (full brief + 4 playbooks) routinely take 2-4 min on Opus 4.7
 DEFAULT_MODEL = "claude-opus-4-7"
 
 
