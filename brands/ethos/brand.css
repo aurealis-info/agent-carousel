@@ -1,0 +1,65 @@
+/* brands/ethos.css — design-system CSS for ETHOS brand.
+ * Defines visual VOCABULARY only (color/font/size/spacing tokens, semantic
+ * typography, color utilities, scrim, atoms). Layout GRAMMAR (flex/grid/
+ * position) is the per-slide layout call's responsibility.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* COLOR TOKENS — these hex values are the ONLY palette in the brand. */
+  --color-primary:    #A67C2E;
+  --color-secondary:  #C8973E;
+  --color-accent:     #C4501A;
+  --color-bg:         #0A0A0A;
+  --color-text:       #F0E6D6;
+  --color-text-muted: #6B6B6B;
+
+  /* FONT TOKENS */
+  --font-heading: 'Playfair Display', serif;
+  --font-body:    'Manrope', sans-serif;
+
+  /* TYPE SCALE */
+  --type-display: 120px;
+  --type-h1:      88px;
+  --type-h2:      64px;
+  --type-h3:      44px;
+  --type-body:    32px;
+  --type-caption: 22px;
+
+  /* SPACING + RADIUS */
+  --sp-1: 8px;  --sp-2: 16px; --sp-3: 24px; --sp-4: 32px;
+  --sp-5: 48px; --sp-6: 64px; --sp-7: 96px; --sp-8: 128px;
+  --radius-sm: 8px; --radius-md: 16px; --radius-pill: 999px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body { color: var(--color-text); background: var(--color-bg); font-family: var(--font-body); }
+
+/* Slide canvas — only place geometry is hardcoded. */
+.slide    { width: 1080px; height: 1350px; position: relative; overflow: hidden; }
+.slide-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* Semantic typography — text role only, never position. */
+.t-display { font-family: var(--font-heading); font-weight: 900; font-size: var(--type-display); line-height: 1.05; }
+.t-h1      { font-family: var(--font-heading); font-weight: 800; font-size: var(--type-h1);      line-height: 1.1;  }
+.t-h2      { font-family: var(--font-heading); font-weight: 700; font-size: var(--type-h2);      line-height: 1.15; }
+.t-h3      { font-family: var(--font-heading); font-weight: 700; font-size: var(--type-h3);      line-height: 1.2;  }
+.t-body    { font-family: var(--font-body);    font-weight: 400; font-size: var(--type-body);    line-height: 1.55; }
+.t-label   { font-family: var(--font-body);    font-weight: 700; font-size: var(--type-caption); text-transform: uppercase; letter-spacing: 0.25em; }
+.t-handle  { font-family: var(--font-body);    font-weight: 500; font-size: var(--type-caption); color: var(--color-text-muted); }
+
+/* Color utilities */
+.c-primary    { color: var(--color-primary); }
+.c-secondary  { color: var(--color-secondary); }
+.c-accent     { color: var(--color-accent); }
+.c-muted      { color: var(--color-text-muted); }
+.bg-primary   { background: var(--color-primary); }
+.bg-secondary { background: var(--color-secondary); }
+.bg-bg        { background: var(--color-bg); }
+
+/* Image overlay for text contrast */
+.scrim-bottom { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 0%, rgba(10,10,10,0.85) 100%); }
+
+/* Reusable atoms — visual only, not layout. */
+.cta-pill     { display: inline-block; padding: var(--sp-2) var(--sp-5); border-radius: var(--radius-pill); background: var(--color-secondary); color: var(--color-bg); font-weight: 700; }
+.divider-gold { width: 64px; height: 2px; background: var(--color-secondary); }

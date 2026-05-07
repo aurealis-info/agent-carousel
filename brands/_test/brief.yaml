@@ -1,0 +1,52 @@
+brand_name: "_test"
+
+app:
+  name: "TestApp"
+  one_line: "A neutral test app for live carousel rendering."
+  store_url: "https://example.com/download"
+  cta_bridge_phrase: "Stop overthinking. Decide in 60 seconds."
+
+icp:
+  audience: "decisive professionals"
+  jtbd: "Decide quickly without overthinking"
+  fears:
+    - "wasting time on non-decisions"
+    - "analysis paralysis"
+  internal_monologue:
+    - "I want clarity, not options"
+
+voice:
+  principles:
+    - "Direct, calm, no fluff"
+    - "Treat the reader as smart"
+  banned_words: []   # _test brand has no hard-rejects (deliberately wide-open for live test)
+  voice_mode:
+    default: expert
+
+publishing_mode: testing
+
+design:
+  colors:
+    primary: "#1a1a1a"
+    secondary: "#2563eb"
+    accent: "#f59e0b"
+    background: "#ffffff"
+    text: "#1a1a1a"
+    text_muted: "#6b7280"
+  fonts:
+    heading: "Inter"
+    body: "Inter"
+  visual_mood: "Crisp editorial. Black on white. Single accent color."
+
+narrative:
+  slide_count: { min: 3, max: 5, sweet_spot: 4 }
+  variety_rules: []
+
+product:
+  hashtags:
+    medium_density: ["#test1", "#test2", "#test3", "#test4"]
+    niche: ["#test5", "#test6", "#test7", "#test8"]
+    avoid: []
+    stack_rule: "8-12 total"
+
+brand_lines_in_sand: []
