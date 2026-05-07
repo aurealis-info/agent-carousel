@@ -1,148 +1,122 @@
-# Universal goal-tagged font pairing library — brand-agnostic.
+# Universal goal-tagged font pairing library — all Google Fonts (commercial-safe).
 # Strategist picks one primary pairing per carousel + optional emphasis font (any pairing).
-# All pairings here are universally available to every brand unless brand brief explicitly forbids.
+# All pairings are universally available to every brand by default.
+#
+# `source: google` — fonts loaded via Google Fonts @import URL. No local files.
+# `families` is the list of family-spec strings used to build the Google Fonts URL,
+# e.g. "Playfair+Display:ital,wght@0,700;0,800;0,900" — see https://fonts.google.com.
 
 pairings:
   - id: avantgarde-cooper
     heading:
-      family: "Cooper Black"
-      weights: [900]
-      source: local
-      files:
-        - "fonts/library/avantgarde-cooper/CooperBlack.ttf"
+      family: "Bowlby One"
+      weights: [400]
+      source: google
+      families: ["Bowlby+One"]
     body:
-      family: "AvantGarde"
-      weights: [500, 700]
-      source: local
-      files:
-        - "fonts/library/avantgarde-cooper/AvantGarde-Demi.ttf"
-        - "fonts/library/avantgarde-cooper/AvantGarde-Narrow.ttf"
+      family: "Inter"
+      weights: [400, 500, 600, 700]
+      source: google
+      families: ["Inter:wght@400;500;600;700"]
     goals: [nostalgia, confidence, retro-modern, bold-claims]
     emotions: [warm, knowing, punchy, lived-in]
-    vibe: "70s editorial confidence. Cooper is the punch, Avant Garde is the structure."
+    vibe: "70s editorial confidence. Bowlby is the Cooper-Black-style chunky punch; Inter is the structure."
     pairs_well_with: [lifestyle, consumer-brands, fashion-adjacent, hospitality, food-and-drink]
     references: [vintage-Esquire, mid-century-New-Yorker]
-    license: "verify Cooper Black + Avant Garde BT licensing for commercial use before publishing"
-    license_status: unverified
+    license: "Both fonts are open-licensed via Google Fonts — commercial-safe."
+    license_status: commercial-safe
 
   - id: citadel-helvetica
     heading:
-      family: "Citadel Script Std"
+      family: "Pinyon Script"
       weights: [400]
-      source: local
-      files:
-        - "fonts/library/citadel-helvetica/CitadelScriptStd-Regular.otf"
+      source: google
+      families: ["Pinyon+Script"]
     body:
-      family: "Helvetica"
-      weights: [300, 400, 700]
-      source: local
-      files:
-        - "fonts/library/citadel-helvetica/Helvetica-Light.ttf"
-        - "fonts/library/citadel-helvetica/Helvetica-Regular.ttf"
-        - "fonts/library/citadel-helvetica/Helvetica-Bold.ttf"
-        - "fonts/library/citadel-helvetica/Helvetica-Oblique.ttf"
+      family: "Inter"
+      weights: [300, 400, 500, 700]
+      source: google
+      families: ["Inter:wght@300;400;500;700"]
     goals: [elegance, luxury, refinement, contrast]
     emotions: [refined, considered, romantic, premium]
-    vibe: "Old-world script meets modern utility. Romance + control."
+    vibe: "Old-world copperplate script meets modern utility. Romance + control."
     pairs_well_with: [luxury, beauty, hospitality, fashion, fine-dining, premium-services]
     references: [Vogue, Kinfolk, Aesop]
-    license: "Helvetica is licensed by Linotype/Monotype; verify rights before commercial publishing"
-    license_status: unverified
+    license: "Both fonts are open-licensed via Google Fonts — commercial-safe."
+    license_status: commercial-safe
 
   - id: inter-tempting
     heading:
-      family: "Tempting"
-      weights: [400]
-      source: local
-      files:
-        - "fonts/library/inter-tempting/Tempting.otf"
+      family: "Caveat"
+      weights: [400, 700]
+      source: google
+      families: ["Caveat:wght@400;700"]
     body:
       family: "Inter"
       weights: [300, 400, 500, 600, 700, 800, 900]
-      source: local
-      files:
-        - "fonts/library/inter-tempting/Inter-Variable.ttf"
-        - "fonts/library/inter-tempting/Inter-Italic-Variable.ttf"
+      source: google
+      families: ["Inter:wght@300;400;500;600;700;800;900"]
     goals: [contemporary, character, digital-with-soul]
     emotions: [sharp, slightly-playful, contemporary]
-    vibe: "Modern digital editorial with a decorative kick."
+    vibe: "Modern digital editorial with a handwritten character flourish."
     pairs_well_with: [SaaS-with-personality, design-tools, creative-software, indie-products]
     references: [contemporary-product-marketing]
-    license: "⚠ Tempting is PERSONAL USE ONLY — must license commercially or drop this pairing before any commercial carousel ships. Inter is OFL (commercial-safe)."
-    license_status: blocked-commercial
+    license: "Both fonts are open-licensed via Google Fonts — commercial-safe."
+    license_status: commercial-safe
 
   - id: opensauce-peacesans
     heading:
-      family: "Peace Sans"
-      weights: [400]
-      source: local
-      files:
-        - "fonts/library/opensauce-peacesans/PeaceSans.otf"
+      family: "Fraunces"
+      weights: [700, 900]
+      source: google
+      families: ["Fraunces:opsz,wght@9..144,700;9..144,900"]
     body:
-      family: "Open Sauce Sans"
-      weights: [400, 700, 900]
-      source: local
-      files:
-        - "fonts/library/opensauce-peacesans/OpenSauceSans-Regular.ttf"
-        - "fonts/library/opensauce-peacesans/OpenSauceSans-Bold.ttf"
-        - "fonts/library/opensauce-peacesans/OpenSauceSans-Black.ttf"
+      family: "Plus Jakarta Sans"
+      weights: [400, 600, 700]
+      source: google
+      families: ["Plus+Jakarta+Sans:wght@400;600;700"]
     goals: [friendly-modern, approachable-tech, warmth, openness]
     emotions: [open, confident, casual, welcoming]
-    vibe: "Geometric warmth. Peace Sans for headline punch, Open Sauce for readable density."
+    vibe: "Geometric warmth. Fraunces brings character; Plus Jakarta carries readable density."
     pairs_well_with: [consumer-tech, wellness-tech, productivity-apps, community-tools, learning]
     references: [contemporary-indie-products]
-    license: "Open Sauce is OFL (commercial-safe). Peace Sans license — verify before publishing."
-    license_status: partial-verified
+    license: "Both fonts are open-licensed via Google Fonts — commercial-safe."
+    license_status: commercial-safe
 
   - id: proximanova-sailors
     heading:
-      family: "Sailors Slant"
-      weights: [400]
-      source: local
-      files:
-        - "fonts/library/proximanova-sailors/SailorsSlant.otf"
+      family: "Outfit"
+      weights: [800, 900]
+      source: google
+      families: ["Outfit:wght@800;900"]
     body:
-      family: "Proxima Nova"
-      weights: [300, 400, 600, 800]
-      source: local
-      files:
-        - "fonts/library/proximanova-sailors/ProximaNova-Light.ttf"
-        - "fonts/library/proximanova-sailors/ProximaNova-Regular.ttf"
-        - "fonts/library/proximanova-sailors/ProximaNova-Semibold.ttf"
-        - "fonts/library/proximanova-sailors/ProximaNova-Extrabold.ttf"
+      family: "DM Sans"
+      weights: [400, 500, 700]
+      source: google
+      families: ["DM+Sans:wght@400;500;700"]
     goals: [polish, trustworthiness, professional-warmth]
     emotions: [confident, approachable, professional]
-    vibe: "SaaS-grade polish. Sailors brings character to headlines; Proxima carries the body."
+    vibe: "SaaS-grade polish. Outfit's geometric weight + DM Sans body cover the polished-startup territory."
     pairs_well_with: [B2B-SaaS, productivity, fintech, professional-services, dev-tools]
     references: [contemporary-SaaS-marketing]
-    license: "Proxima Nova is licensed (Mark Simonson); verify rights before commercial publishing."
-    license_status: unverified
+    license: "Both fonts are open-licensed via Google Fonts — commercial-safe."
+    license_status: commercial-safe
 
-  # NOTE: Block Berthold Condensed (the original pairing display font) was missing from
-  # the v1 source migration. This pairing currently uses Recoleta-Black as the display
-  # font for same-family weight contrast. To restore the original Berthold-display intent,
-  # source the font and add fonts/library/recoleta-berthold/BlockBertholdCondensed-Regular.otf,
-  # then update the heading.family/files below.
   - id: recoleta-berthold
     heading:
-      family: "Recoleta"
-      weights: [900]
-      source: local
-      files:
-        - "fonts/library/recoleta-berthold/Recoleta-Black.otf"
+      family: "Bebas Neue"
+      weights: [400]
+      source: google
+      families: ["Bebas+Neue"]
     body:
-      family: "Recoleta"
-      weights: [300, 400, 500, 700]
-      source: local
-      files:
-        - "fonts/library/recoleta-berthold/Recoleta-Light.otf"
-        - "fonts/library/recoleta-berthold/Recoleta-Regular.otf"
-        - "fonts/library/recoleta-berthold/Recoleta-Medium.otf"
-        - "fonts/library/recoleta-berthold/Recoleta-Bold.otf"
+      family: "Playfair Display"
+      weights: [400, 500, 700, 800, 900]
+      source: google
+      families: ["Playfair+Display:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,700"]
     goals: [editorial-authority, gravitas, sophistication, depth]
     emotions: [weighty, considered, premium, established]
-    vibe: "Magazine-cover authority. Recoleta carries body and (until Berthold is restored) display."
+    vibe: "Magazine-cover authority. Playfair carries body and headline weight; Bebas is the loud condensed pull-quote."
     pairs_well_with: [thought-leadership, finance, philosophy, deep-content, masculine-discipline]
     references: [art-direction-driven-editorial]
-    license: "Recoleta: verify license before commercial publishing. Berthold pending restoration."
-    license_status: unverified
+    license: "Both fonts are open-licensed via Google Fonts — commercial-safe."
+    license_status: commercial-safe
