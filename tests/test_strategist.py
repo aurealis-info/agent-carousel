@@ -43,7 +43,7 @@ def _well_formed_response():
                 {"i": 4, "type": "body", "headline": "Ask: smallest next step?", "body": "Reduce to one move.",
                  "label": "MOVE 02", "composition": "monolith", "density": "quiet", "hero_word": None},
                 {"i": 5, "type": "body", "headline": "Ask: when, exactly?", "body": "Time-box the decision.",
-                 "label": "MOVE 03", "composition": "monolith", "density": "loud", "hero_word": "exactly"},
+                 "label": "MOVE 03", "composition": "monolith", "density": "quiet", "hero_word": "exactly"},
                 {"i": 6, "type": "climax", "headline": "Decisiveness is a habit.", "body": "Repeat the loop.",
                  "label": None, "composition": "bullseye", "density": "loud", "hero_word": "habit"},
                 {"i": 7, "type": "cta", "headline": "Download ETHOS", "body": "Theory without execution stays theory. ETHOS automates the protocol.",

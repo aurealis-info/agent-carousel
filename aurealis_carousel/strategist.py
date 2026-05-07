@@ -179,13 +179,13 @@ def _validate(response: dict, brand: dict, font_library: dict, history: list) ->
         if slide.get("composition") not in VALID_COMPOSITIONS:
             raise ValidationError(f"slide {slide['i']} composition {slide.get('composition')!r} invalid")
 
-    # density alternation: never 4+ consecutive loud
+    # density alternation: no 3 consecutive loud
     loud_streak = 0
     for s in slides:
         if s.get("density") == "loud":
             loud_streak += 1
-            if loud_streak >= 4:
-                raise ValidationError("density: 4+ consecutive 'loud' slides")
+            if loud_streak >= 3:
+                raise ValidationError("density: 3+ consecutive 'loud' slides")
         else:
             loud_streak = 0
 
