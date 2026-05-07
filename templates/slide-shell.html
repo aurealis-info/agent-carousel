@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{{ brand_css_path }}">
+  {% if pairing_font_faces %}
+  <style>
+    {{ pairing_font_faces | safe }}
+  </style>
+  {% endif %}
+</head>
+<body>
+  <div class="slide">
+    {{ slide_body | safe }}
+  </div>
+</body>
+</html>
