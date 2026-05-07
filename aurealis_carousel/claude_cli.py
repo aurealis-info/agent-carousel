@@ -46,7 +46,12 @@ def query(
         cmd += ["--allowedTools", ",".join(allowed_tools)]
     proc = subprocess.run(cmd, input=prompt, capture_output=True, text=True, timeout=timeout)
     if proc.returncode != 0:
-        raise ClaudeCLIError(f"claude exited {proc.returncode}: {proc.stderr.strip()}")
+        raise ClaudeCLIError(
+            f"claude exited {proc.returncode}.\n"
+            f"  stderr: {proc.stderr.strip()[:500] or '(empty)'}\n"
+            f"  stdout: {proc.stdout.strip()[:500] or '(empty)'}\n"
+            f"  cmd: {' '.join(cmd[:8])}{'...' if len(cmd) > 8 else ''}"
+        )
     try:
         envelope = json.loads(proc.stdout)
     except json.JSONDecodeError as e:

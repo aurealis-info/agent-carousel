@@ -111,7 +111,9 @@ def critique_carousel(
         playbook_voice=playbook_voice, playbook_typography=playbook_typography,
         playbook_layout=playbook_layout, playbook_conversion=playbook_conversion,
     )
-    response = query_json(prompt, allowed_tools=["Read"])
+    # Each PNG requires a Read tool call; allow generous headroom so the model
+    # can Read every slide (one tool call per slide) plus reason and emit JSON.
+    response = query_json(prompt, allowed_tools=["Read"], max_turns=20)
     return CritiqueResult(
         carousel_assessment=response["carousel_assessment"],
         subtraction_test_findings=response["subtraction_test_findings"],
