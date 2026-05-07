@@ -200,9 +200,12 @@ def _validate(response: dict, brand: dict, font_library: dict, history: list) ->
     # Brand banned-words check (literal whole-word, case-insensitive)
     banned = brand.get("voice", {}).get("banned_words", [])
     text_blob = " ".join([
-        response["topic"],
-        " ".join(s.get("headline", "") + " " + s.get("body", "") + " " + (s.get("label") or "") for s in slides),
-        response["caption"]["full"],
+        response.get("topic") or "",
+        " ".join(
+            (s.get("headline") or "") + " " + (s.get("body") or "") + " " + (s.get("label") or "")
+            for s in slides
+        ),
+        response.get("caption", {}).get("full") or "",
     ]).lower()
     for word in banned:
         if re.search(rf"\b{re.escape(word.lower())}\b", text_blob):

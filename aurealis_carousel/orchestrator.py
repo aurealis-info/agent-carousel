@@ -34,11 +34,11 @@ def _load_playbook() -> dict[str, str]:
     return pb
 
 
-def _slide_dict_to_content(d: dict) -> designer_mod.SlideContent:
+def _slide_dict_to_content(d: dict, fallback_i: int) -> designer_mod.SlideContent:
     return designer_mod.SlideContent(
-        i=d["i"],
-        type=d["type"],
-        headline=d["headline"],
+        i=d.get("i", fallback_i),
+        type=d.get("type", "body"),
+        headline=d.get("headline", ""),
         body=d.get("body", ""),
         label=d.get("label"),
         composition=d.get("composition", "monolith"),
@@ -102,8 +102,8 @@ def run(
     designer_results: list[designer_mod.DesignerResult] = []
     slide_contents: list[designer_mod.SlideContent] = []
 
-    for slide_dict in strat.narrative_arc["slides"]:
-        slide = _slide_dict_to_content(slide_dict)
+    for idx, slide_dict in enumerate(strat.narrative_arc["slides"], start=1):
+        slide = _slide_dict_to_content(slide_dict, fallback_i=idx)
         composition_pattern.append(slide.composition)
         slide_contents.append(slide)
 
