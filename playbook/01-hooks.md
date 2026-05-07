@@ -36,6 +36,29 @@ Hooks ≤ 6 words dominate save-rates. Reasons:
 - A strict 6-word limit forces elimination of weak adjectives/adverbs. Distills copy down to powerful nouns + kinetic verbs that fit in foveal vision.
 - Carousels get 1.9× higher reach than single-image posts, but that multiplier requires high swipe-through. Bad slide-1 hook destroys the multiplier.
 
+## Identity-driven hook scaffolds
+
+In niches where the audience's *identity* is the entry point (faith, masculinity, recovery, parenthood, founder, athlete, artist), five hook scaffolds outperform generic curiosity-gap formulas. Each locks a register (tone, self-selection, format fit) while leaving copy free, so the writer is solving for substance, not skeleton.
+
+1. **Numbered habits** — `[N] things a [identity] [does | refuses | carries] [time | context]` → "5 things a godly man does at 5 AM." Anticipation + collectability. Highest save-rate scaffold.
+2. **Identity + worldly aspiration** — `How to grow in [identity virtue] *and* [worldly value the audience already wants]` → "How to grow in faith and in your career." Bridges the curious into the substantive.
+3. **Reframe** — `What [authority source] actually says about [topic the audience already cares about]` → "What Scripture actually says about ambition." Reframes a hot topic through the brand's authority source.
+4. **Identity imperative** — `How a [identity] [verb] [object]` → "How a godly man handles success without losing himself." Self-selecting, declarative.
+5. **Counter-frame** — `Why a [identity] [doesn't | isn't] [false archetype the audience has been sold]` → "Why a godly man isn't an alpha." Highest-leverage and highest-risk: directly confronts a competing frame, accepting hostile comments from the rejected audience as a feature.
+
+These work because identity-driven niches don't have a Schwartz problem-aware ladder — they have a *whose-team-am-I-on* gate. The hook's first job in those niches is self-selection, not curiosity.
+
+## Audience self-selection — the 1.5-second window
+
+In identity-driven niches, the hook must claim the right audience inside ~1.5 seconds, or impressions are wasted on viewers who will never convert and the right viewers scroll past because they didn't recognize themselves.
+
+Two valid mechanisms:
+
+- **Mode A — bake the identity word into the hook itself.** "5 things a *godly* man does at 5 AM" self-selects in one word.
+- **Mode B — short hook (2-4 words) + one-line subhead that does the self-selection work.** "Hidden men rot." → subhead "Why hidden Christian men rot — and free ones don't. James 5:16."
+
+Failing to self-select is a category of hook failure that doesn't show up in the universal anti-patterns list but is fatal for identity-driven brands: viral reach on the wrong audience, under-claim of the right one.
+
 ## 5 anti-patterns — auto-reject
 
 1. **Vague Promise** — Lacks quantifiable metric or specific outcome. Fails to trigger the Reticular Activating System.

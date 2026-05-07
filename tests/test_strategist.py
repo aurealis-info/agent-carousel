@@ -36,17 +36,13 @@ def _well_formed_response():
             "slides": [
                 {"i": 1, "type": "hook", "headline": "Stop deciding twice.", "body": "",
                  "label": None, "composition": "billboard", "density": "loud", "hero_word": None},
-                {"i": 2, "type": "context", "headline": "Indecision compounds.", "body": "Each undecided choice taxes your day.",
-                 "label": None, "composition": "monolith", "density": "quiet", "hero_word": "compounds"},
-                {"i": 3, "type": "body", "headline": "Ask: what am I avoiding?", "body": "Name the avoidance.",
+                {"i": 2, "type": "body", "headline": "Ask: what am I avoiding?", "body": "Name the avoidance.",
                  "label": "MOVE 01", "composition": "monolith", "density": "loud", "hero_word": "avoiding"},
-                {"i": 4, "type": "body", "headline": "Ask: smallest next step?", "body": "Reduce to one move.",
+                {"i": 3, "type": "body", "headline": "Ask: smallest next step?", "body": "Reduce to one move.",
                  "label": "MOVE 02", "composition": "monolith", "density": "quiet", "hero_word": None},
-                {"i": 5, "type": "body", "headline": "Ask: when, exactly?", "body": "Time-box the decision.",
-                 "label": "MOVE 03", "composition": "monolith", "density": "quiet", "hero_word": "exactly"},
-                {"i": 6, "type": "climax", "headline": "Decisiveness is a habit.", "body": "Repeat the loop.",
+                {"i": 4, "type": "climax", "headline": "Decisiveness is a habit.", "body": "Repeat the loop.",
                  "label": None, "composition": "bullseye", "density": "loud", "hero_word": "habit"},
-                {"i": 7, "type": "cta", "headline": "Download ETHOS", "body": "Theory without execution stays theory. ETHOS automates the protocol.",
+                {"i": 5, "type": "cta", "headline": "Download ETHOS", "body": "Theory without execution stays theory. ETHOS automates the protocol.",
                  "label": None, "composition": "bullseye", "density": "loud", "color_inverted": True, "hero_word": None}
             ]
         },
@@ -73,7 +69,7 @@ def test_generate_returns_well_formed(ethos_brand, font_library):
     assert isinstance(r, StrategistResult)
     assert r.voice_mode == "guide"
     assert r.type_pairing_id == "recoleta-berthold"
-    assert r.slide_count == 7
+    assert r.slide_count == 5
 
 
 def test_generate_rejects_hook_over_6_words(ethos_brand, font_library):

@@ -31,6 +31,25 @@ Information density must shift violently slide-to-slide. Habituation produces sk
 
 **Hard rule:** never stack 3+ "loud" (high-density) slides consecutively. Reader's optical processing exhausts by slide 4.
 
+## The 5-slide chassis — short download-CTA carousels
+
+For app-download CTAs, a 5-slide chassis often outperforms 8-10 slide arcs on save-rate and completion. The shorter chassis trades narrative depth for completion certainty: every slide does exactly one job, and the swipe-cost from one to the next is low enough that completion stays above ~60%.
+
+| Slide | Job | Constraints |
+|---|---|---|
+| 1 — Hook | Stop scroll in <3s; self-select audience | 2-6 words. No app mention. Identity/curiosity gap. |
+| 2 — Value 1 | Apply-today usefulness | ~40 words. Second person. No app mention. |
+| 3 — Value 2 | Deepen value; aphorism close | Last line should be screenshottable. No app mention. |
+| 4 — App tie-in | Bridge: name the in-app surface that does this daily | First app mention. Conversational, not salesy. Names a *specific* surface. |
+| 5 — CTA + screenshot | Single ask + visual proof | Repeats surface from slide 4. Screenshot shows that exact feature. App name in headline. Strip secondary asks. |
+
+Use this chassis when:
+- The app has well-defined surfaces (Daily X, Streak, Y feed, Z dashboard) that map to topics 1:1
+- Save-rate / share-rate is the optimization target (ICP wants reference content)
+- Brand has a strict register that long arcs dilute
+
+Don't stretch a chassis topic to 8 slides. If the topic genuinely needs more substance, it's two carousels (one shipped today, one queued).
+
 ## CTA-bridge slide architecture
 
 The slide immediately before the CTA bridges from passive education to active transaction. Required elements:

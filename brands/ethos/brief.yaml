@@ -7,41 +7,88 @@ app:
   cta_bridge_phrase: "ETHOS builds that man one morning at a time. One verse, one identity anchor, one rep — matched to where you actually are."
 
 icp:
-  audience: "young Christian men 18-25"
+  audience: "young Christian men 18-25 caught between feral (Tate-coded) and domesticated (porn-fed soft) versions of manhood — and called to a third: the governed man."
   jtbd: "Become the man God designed — long before any conversation, opportunity, or test forces it"
   fears:
     - "drifting back to old patterns"
     - "performing faith without depth"
     - "still being a boy when the world expects a man"
     - "ending up alone, or worse — with someone who saw through him"
+    - "getting pulled into the feral frame (Tate-coded, appetitive, rage-bait)"
+    - "settling into the domesticated frame (porn-fed, soft, performative, no spine)"
   internal_monologue:
     - "I want to be the kind of man my future children will respect"
     - "I'm tired of streaks I cannot keep"
     - "I'm done auditioning — I want to actually be him"
     - "She can tell. They all can tell."
+    - "I don't want to be Tate. I don't want to be soft either. There has to be a third thing."
 
 voice:
+  # Codified attributes (from marketing/documentation/05-messaging-and-voice.md):
+  # Direct, Grounded, Masculine, Honest. Older brother across the table at 10pm —
+  # not a parent, not a cheerleader, not a TED talk.
+  attributes:
+    - direct       # Names the thing. No throat-clearing, no padding.
+    - grounded     # Scripture is the floor, not a flourish. Cite when it cuts.
+    - masculine    # Imperative verbs, spatial metaphors, building/protecting/conquest. Not crude.
+    - honest       # Names what's actually killing this generation. Doesn't flatter.
   principles:
-    - "Direct without being preachy. Older brother, not parent."
+    - "Older brother, not parent. Brotherly directness, not lecture."
     - "Lead with declarative truth. The reader earns the conclusion."
     - "Scripture is the weapon, not the decoration. Quote it when it cuts."
     - "Identity language over behavior language: 'become him' beats 'do this'."
-    - "Don't hide from the masculine register. Action verbs, spatial metaphors, conquest, building, protecting."
+    - "Apex, not alpha. Governed > dominant. Sacrificial leadership > performative dominance."
+    - "Strong AND tender — in the right places. Ruthless with self, gentle with others."
+
   # Brand-specific hard-reject words/phrases — ETHOS-specific list (NOT universal infrastructure).
   # Mechanical regex check at strategist + critic stages.
   banned_words:
+    # Pseudo-spiritual leverage / prosperity gospel
     - manifest
     - "the universe rewards"
     - blessed
+    - "blessed and highly favored"
     - abundance
+    - "divine alignment"
+    # Synthetic intimacy / influencer-speak
     - bestie
     - "dive in"
     - "game-changer"
     - "level up"
-    - grind
     - bossbabe
+    # Hustle-bro / grindset Christianity
+    # NOTE: "grind" as standalone is banned ONLY when it frames itself as the path to manhood
+    # or the cure. Inside "The Grind" content pillar (paired with Scripture / faithfulness),
+    # the word can appear — judge by intent, not literal match.
+    - "rise and grind"
+    - "no days off"
+    - "5 AM club"
+    # Therapy-speak diluting hard truth
     - "hold space"
     - alignment
+    - "be gentle with yourself"
+    - "do the work"
+    - "your journey"
+    - "lean into"
+    # Tate-coded / feral frame
+    - alpha
+    - "high-value man"
+    - king
+    - "she belongs to her king"
+    # Domesticated / church-camp clichés
+    - "brother in Christ"
+    - "do life together"
+    - "let go and let God"
+    - "I'm just a sinner saved by grace"
+    # Polished sentiment / Pinterest aesthetic copy
+    - "you are enough"
+    - "today's gentle reminder"
+    - "God has a plan"
+    # Performance manhood
+    - "become impressive"
+    # Easy answers
+    - "trust God and it'll work out"
+
   voice_mode:
     default: guide
 
@@ -66,10 +113,13 @@ design:
   visual_mood: "Obsidian and gold. Warm metallic gold catching candlelight on ink-black. Editorial / cinematic. A weapon picked up for the day, not a content library browsed."
 
 narrative:
-  slide_count: { min: 5, max: 9, sweet_spot: 7 }
+  # ETHOS uses the 5-slide chassis as the standard (per marketing/guidelines/CAROUSEL/guidelines.md).
+  # Allow up to 6 for topics that genuinely need one extra value slide; anything longer is two carousels.
+  slide_count: { min: 5, max: 6, sweet_spot: 5 }
   variety_rules:
-    # Optional opt-in; remove any you don't want enforced.
     - "no repeat voice_mode in last 3 carousels"
+    - "no repeat format archetype in last 3 carousels (rotate Listicle / Mistakes / Uncomfortable Questions / Problem-Solution / Cultural Lens)"
+    - "no repeat content pillar in last 2 carousels (rotate Scripture Applied / The Grind / Real Talk / The Vision)"
 
 product:
   hashtags:
@@ -102,9 +152,132 @@ product:
       - "#alpha"
       - "#sigma"
       - "#hustleculture"
+      - "#kingmindset"
     stack_rule: "8-12 total: 2 broad / 4 niche / 3 audience-or-pillar / 2 branded"
 
 brand_lines_in_sand:
   - "never use prosperity-gospel framing"
   - "never invoke shame as motivator"
   - "never compare brand favorably to other Christian apps"
+  - "never frame Imman.faith (or any single creator) as the brand identity — the app is the star"
+  - "never recruit the feral or domesticated audiences accidentally; faith signal in the hook is mandatory"
+  - "never use Pinterest-Christian aesthetic — coffee+Bible flatlays, candlelit pages, soft pastel devotional. Wrong audience signal."
+
+# Free-form content guidelines — injected verbatim into the strategist prompt as
+# brand-specific creative direction. This is the substantive layer codified in
+# marketing/guidelines/. Read it as principles, not a template.
+content_guidelines: |
+  # ETHOS Content Guidelines (substantive layer)
+
+  ## The audience reality
+  A 22-year-old Christian man in 2026 is caught between two failed frames the internet
+  is selling him:
+
+  - **The feral frame** — Tate-coded, appetitive, conquest-of-women, rage-bait, "alpha,"
+    "high-value man," "she belongs to her king." Says his appetites are masculine virtue.
+  - **The domesticated frame** — porn-fed, soft, performative, no spine, scrolls on the
+    couch, "trust the journey," "you are enough," can't lead a room or a relationship.
+
+  ETHOS offers a third: **the governed man.** Self-mastery as foundation. Christ-imparted
+  righteousness as the floor (Romans 5; not earned; not hustled into existence). Strong
+  AND tender — in the right places. Apex, not alpha.
+
+  ## The 10 substantive themes
+  Every carousel must land on ONE primary theme (and at most one secondary). Pick from:
+
+  1. **He is governed** — Self-mastery; the foundation of every other virtue.
+  2. **He kills what's killing him** — "Put to death" (Col 3:5; Rom 8:13); not "manage."
+  3. **He works** — Work isn't the curse, futility is. Usefulness matters. The forge of his 20s.
+  4. **He tells the truth** — One man across contexts. Hidden men rot (Jas 5:16).
+  5. **He's strong AND tender** — Ruthless with himself, gentle with others. Right places.
+  6. **He leads by giving himself away** — Sacrificial leadership (Eph 5), not domination.
+  7. **He's planted in real men** — Real men in the room with his phone number, not online.
+  8. **He chases God, not a wife** — Order matters. Desperation is readable.
+  9. **He fights the phone** — 2026's tavern, idol, and discipler. Specific battle for this generation.
+  10. **He walks humbly** — Micah 6:8. Sturdy, not soft. Dust with breath.
+
+  ## The 4 content pillars (rotate weekly)
+  - **Scripture Applied** — Verse + practical application. Mirror Daily Anchor. (~2x/wk)
+  - **The Grind** — Discipline, consistency, daily fight. Honor the small unseen choices. (~2x/wk)
+  - **Real Talk** — What men don't say at church: lust, anger, doubt, pride, loneliness, porn. (~1-2x/wk)
+  - **The Vision** — Who you're becoming. Leadership, fatherhood, marriage, legacy. (~1x/wk)
+
+  ## The 5-slide chassis (load-bearing — non-negotiable for ETHOS)
+  - **Slide 1 — HOOK.** 2-6 words. Pain point or curiosity gap. NO app mention.
+    Faith signal MANDATORY (see below). Visual arrests in <3 sec.
+  - **Slide 2 — VALUE TIP 1.** Real, specific, apply-today usefulness. ~40 words. 2nd person.
+  - **Slide 3 — VALUE TIP 2.** Deepen value. Last line screenshottable (aphorism close).
+  - **Slide 4 — APP TIE-IN.** ONE natural transition: name the in-app surface that does
+    daily what the value just shown requires. First app mention (conversational, not salesy).
+  - **Slide 5 — CTA + SCREENSHOT.** Specific CTA tied to the surface named in slide 4.
+    Screenshot shows that exact feature. ETHOS logo in footer. Strip all secondary asks.
+
+  ## Faith signal mandate (slide 1)
+  Every hook must self-select for the faith-pursuing man within ~1.5 seconds, OR the
+  carousel pulls the wrong audience (generic self-improvement, alpha-curious) and
+  under-claims the right one. Two valid modes:
+
+  - **Mode A — Bake faith word into the hook.** Use: godly, faith, Scripture, God,
+    the Word, Christ, Bible, Proverbs, Christian.
+    Example: "5 things a godly man does at 5 AM."
+  - **Mode B — Short hook (2-4 words) + subhead.** Subhead does the self-selection work.
+    Example: hook "Hidden men rot." subhead "Why hidden Christian men rot — and free
+    ones don't. James 5:16."
+
+  ## The 5 hook scaffolds
+  Pick one. Don't invent novel structures — these are tested in the niche.
+
+  1. **Numbered habits** — "[N] things a godly man [does/refuses/carries] [time/context]"
+     → "5 things a godly man does at 5 AM"
+  2. **Faith + worldly aspiration** — "How to grow in faith *and* [worldly value]"
+     → "How to grow in faith and in your career"
+  3. **Scripture-says reframe** — "What Scripture actually says about [topic]"
+     → "What Scripture actually says about ambition"
+  4. **Identity imperative** — "How a godly man [verb]"
+     → "How a godly man handles success without losing himself"
+  5. **Counter-frame** — "Why a godly man [doesn't/isn't] [worldly archetype]"
+     → "Why a godly man isn't an alpha"
+     (Highest leverage, highest risk. Direct confrontation of feral/domesticated frames.)
+
+  ## The 5 format archetypes
+  Rotate across the week. Don't run two of the same in a row.
+
+  - **A — Listicle.** "X traits / X verses." Anticipation + collectability. Highest save-rate.
+    Best for: Scripture Applied, The Vision, The Grind.
+  - **B — Mistakes List.** Common errors + corrections. Identification + relief.
+    Tone is brotherly, never sneering. Best for: Real Talk, The Grind.
+  - **C — Uncomfortable Questions.** Questions the viewer can't answer comfortably.
+    Self-confrontation. Use sparingly — too many in a row reads as nagging.
+    Best for: Real Talk, The Vision.
+  - **D — Problem/Solution.** Hard/wrong way → better path. Slide 4 IS the better path.
+    Best for: The Grind, Scripture Applied.
+  - **E — Cultural Lens.** Frame through audience's existing reference (film, generational
+    moment). Borrowed attention. Lens must NOT contradict ETHOS voice. Best for: any.
+
+  ## App surfaces (slide-4 tie-in must name ONE)
+  - **Daily Anchor** — primary; most carousels close here. (verse + reflection + prayer)
+  - **AI Companion** — chat that won't lie to him about what Scripture says
+  - **Streaks** — consistency tracking
+  - **12-Tag Check-In** — daily input mechanism for the radar
+  - **Weekly Snapshot** — growth reflection across the 12 axes
+  - **Radar Chart** — premium growth visualization
+  - **Onboarding Identity Anchors** — vision-setting at sign-up
+  - **Saved Verses** — personal archive
+
+  Slide 5 CTA must repeat the surface name slide 4 introduced AND the screenshot must
+  show that exact surface. "Download ETHOS + random screenshot" breaks the conversion
+  mechanism even if the rest of the carousel is perfect.
+
+  ## Anti-patterns (in addition to the universal voice playbook)
+  - **Pinterest-Christian aesthetic** — coffee+Bible flatlays, candlelit pages, pastels.
+    Recruits the wrong audience or looks twee to the ICP.
+  - **Sermon-length monologue** — short-form is short-form. If it needs more, it's two carousels.
+  - **Performance manhood** — "become impressive," "high-value man." Capitalist reframing of virtue.
+  - **Edgelord / nihilist humor** — wins the wrong audience even when the substance is right.
+  - **Imman-as-brand** — Imman.faith is distribution, not identity. Don't make him the star
+    of carousel content. The app is the star; he's one of many leaders.
+
+  ## Voice — the older-brother test
+  Before shipping, read it as if your older brother is saying it across the table at 10pm —
+  not at the pulpit, not on a podcast, not in a TikTok thirst-trap voiceover. If it doesn't
+  sound like that, it's wrong.

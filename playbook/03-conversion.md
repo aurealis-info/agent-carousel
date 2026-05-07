@@ -58,6 +58,27 @@ SPARK criteria for the trigger word:
 
 **When it cheapens:** Triggered asset is low-value (a generic checklist, a public link they could've gotten elsewhere). Conditions audience to view brand as spam → ignore future triggers.
 
+## Surface-specific bridges — the screenshot ↔ slide-4 lock
+
+The highest-converting download CTAs aren't generic ("check out the app"). They point to a *specific in-app surface the viewer is already primed for* by the slide before.
+
+Mechanism:
+
+1. **Slide N-1 (the bridge)** names ONE in-app surface — Daily X, Y feed, Z streak, dashboard, planner, archive, chat — that does daily what the carousel just taught manually.
+2. **Slide N (the CTA)** repeats that surface name AND the screenshot shows that exact feature.
+
+The viewer is no longer deciding "should I install this?" They are deciding "I want to *experience* the thing they just described." The friction collapses because the imagined-action and the visual-proof match.
+
+Failure mode: Slide N-1 says "ETHOS opens before the algorithm does" → Slide N's screenshot shows the *settings panel*. The viewer's primed action and the visual don't match; they bounce. Even a perfect carousel above tanks at the bridge.
+
+Concrete checklist before shipping a carousel:
+
+- Did slide N-1 name a specific surface (not "the app")?
+- Does slide N's CTA copy repeat that surface name?
+- Does slide N's screenshot show that exact surface, not a generic onboarding screen or logo?
+
+If any answer is no, the carousel is leaking conversion.
+
 ## Conversion anti-patterns — reject
 
 1. **Competing CTAs** — Asking for like + save + comment + follow + download simultaneously dilutes urgency and causes choice paralysis.

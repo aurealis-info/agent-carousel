@@ -41,6 +41,11 @@ def query(
         "--model", model,
         "--max-turns", str(max_turns),
         "--output-format", "json",
+        # Hermetic subprocess: ignore all globally-configured MCP servers (figma, notion,
+        # vercel, etc.) that would otherwise leak in as available tools. Without this,
+        # Claude can opportunistically call `mcp__figma__...` and burn `--max-turns` on
+        # `tool_use` exits — even when --tools "" disables built-ins.
+        "--strict-mcp-config",
     ]
     # Tool-availability semantics:
     #   allowed_tools is None  → all built-in tools disabled (pure text → JSON call)

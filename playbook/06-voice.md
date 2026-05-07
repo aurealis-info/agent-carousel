@@ -48,6 +48,19 @@ For each category: name + principle + reasoning + a few illustrative examples ("
 **Why it kills credibility:** Sounds soft and sophisticated but communicates nothing operational. Reader can't act on it.
 **Examples typically include:** "hold space," "the journey," "alignment," "honor your truth," "lean into." Apply the principle: any phrase that converts a measurable behavior into an unmeasurable feeling.
 
+## Audience self-selection in identity-driven niches
+
+The 5 anti-pattern categories above guard against *attracting the wrong reaction* (mystical, parasocial, hollow, exhausted, vague). In identity-driven niches (faith, masculinity, recovery, parenthood, founder, athlete, artist), there is a sixth category that operates one layer up: **failing to claim the right audience at all.**
+
+A perfectly written hook in a generic register will *under-claim* the brand's ICP and *over-claim* nearby tribes whose values diverge. "5 things a man does at 5 AM" pulls every variant of internet-masculinity (alpha-curious, biohack-curious, hustle-curious) and forces the brand to disambiguate downstream — usually too late.
+
+Two valid mechanisms when the brand is identity-driven:
+
+- **Mode A — bake the identity word into slide 1's opener.** "5 things a *godly* man does at 5 AM." The identity word does the self-selection inside the foveal-vision window.
+- **Mode B — short hook + one-line subhead that does the self-selection work.** When the hook is 2-4 power-words, add a subhead that names the ICP and the stakes. Subhead is allowed because the visual register is "headline + tagline," not "list."
+
+Apply to identity-driven brands; ignore for generic-utility brands (productivity, fitness tracking, finance) where the audience is the universe minus opt-outs.
+
 ## Voice tests (creative-director heuristics)
 
 Apply BEFORE finalizing copy. Failing any test = revise.

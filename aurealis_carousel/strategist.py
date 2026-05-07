@@ -59,6 +59,10 @@ def _build_prompt(brand, font_library, history, user_topic_hint, playbook) -> st
     h_min, h_max = _parse_hashtag_range(brand)
     sc = brand.get("narrative", {}).get("slide_count", {"min": 5, "max": 9})
     banned_words = brand.get("voice", {}).get("banned_words", [])
+    voice_attributes = brand.get("voice", {}).get("attributes", [])
+    content_guidelines = brand.get("content_guidelines", "").strip()
+    brand_lines_in_sand = brand.get("brand_lines_in_sand", [])
+    variety_rules = brand.get("narrative", {}).get("variety_rules", [])
     recent_topics = [h.get("slug", "") for h in history[-14:]]
     user_topic_block = (
         f"USER-PROVIDED TOPIC (use VERBATIM as the carousel's topic): {user_topic_hint}\n"
@@ -75,11 +79,20 @@ You are NOT a helpful assistant. You are a creative director with skin in the ga
 BRAND: {brand['brand_name']}
 APP CTA BRIDGE: "{brand['app']['cta_bridge_phrase']}"
 
+VOICE ATTRIBUTES (codified — every line must read in this register):
+{yaml.safe_dump(voice_attributes) if voice_attributes else '(none — fall back to principles below)'}
+
 VOICE PRINCIPLES:
 {yaml.safe_dump(brand['voice']['principles'])}
 
 BRAND-SPECIFIC HARD-REJECT WORDS (do NOT use these literal words/phrases):
 {yaml.safe_dump(banned_words) if banned_words else '(none)'}
+
+BRAND LINES IN THE SAND (never cross these — even if the topic invites it):
+{yaml.safe_dump(brand_lines_in_sand) if brand_lines_in_sand else '(none)'}
+
+BRAND CONTENT GUIDELINES (substantive direction — read as principles, not template):
+{content_guidelines if content_guidelines else '(none)'}
 
 VOICE MODES AVAILABLE: {allowed_modes}
 DEFAULT VOICE MODE FOR THIS BRAND: {default_mode}
@@ -93,6 +106,9 @@ FORBIDDEN PAIRINGS FOR THIS BRAND: {forbidden_pairings if forbidden_pairings els
 SLIDE COUNT RANGE: [{sc['min']}, {sc['max']}]; sweet spot {sc.get('sweet_spot', 7)}
 HASHTAG COUNT RANGE: [{h_min}, {h_max}]
 HASHTAG STACK RULE: "{brand.get('product', {}).get('hashtags', {}).get('stack_rule', '')}"
+
+VARIETY RULES (apply against recent history):
+{yaml.safe_dump(variety_rules) if variety_rules else '(none)'}
 
 RECENT TOPIC SLUGS (LAST 14 — DO NOT REPEAT):
 {recent_topics if recent_topics else '(none)'}
