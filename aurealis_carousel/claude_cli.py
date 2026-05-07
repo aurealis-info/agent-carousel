@@ -42,7 +42,15 @@ def query(
         "--max-turns", str(max_turns),
         "--output-format", "json",
     ]
-    if allowed_tools:
+    # Tool-availability semantics:
+    #   allowed_tools is None  → all built-in tools disabled (pure text → JSON call)
+    #   allowed_tools = [...]  → restrict to only those tools
+    # Disabling tools is critical for phases like strategist + designer where
+    # Claude can otherwise burn `--max-turns` on opportunistic tool_use calls
+    # (Read, Bash, etc.) and exit with `error_max_turns` instead of returning.
+    if allowed_tools is None:
+        cmd += ["--tools", ""]
+    elif allowed_tools:
         cmd += ["--allowedTools", ",".join(allowed_tools)]
     proc = subprocess.run(cmd, input=prompt, capture_output=True, text=True, timeout=timeout)
     if proc.returncode != 0:

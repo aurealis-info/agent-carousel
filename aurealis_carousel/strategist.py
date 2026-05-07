@@ -241,5 +241,5 @@ def _validate(response: dict, brand: dict, font_library: dict, history: list) ->
 
 def generate_strategy(*, brand, font_library, history, user_topic_hint, playbook) -> StrategistResult:
     prompt = _build_prompt(brand, font_library, history, user_topic_hint, playbook)
-    response = query_json(prompt, allowed_tools=["Read"])
+    response = query_json(prompt)   # tools disabled — strategist is a pure text→JSON call
     return _validate(response, brand, font_library, history)
