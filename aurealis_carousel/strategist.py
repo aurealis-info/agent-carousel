@@ -211,9 +211,10 @@ def _validate(response: dict, brand: dict, font_library: dict, history: list) ->
         if re.search(rf"\b{re.escape(word.lower())}\b", text_blob):
             raise ValidationError(f"brand banned word/phrase {word!r} appears in copy")
 
-    # Caption first 125 chars contains hook trigram (3 consecutive content words)
+    # Caption first 125 chars contains hook trigram (3 consecutive content words).
+    # Tokenizer includes apostrophes so contractions ("doesn't") stay intact.
     cap_window = response["caption"]["first_125_chars"][:125].lower()
-    hook_content = re.findall(r"\w+", slides[0]["headline"].lower())
+    hook_content = re.findall(r"[\w']+", slides[0]["headline"].lower())
     if hook_content:
         trigram = " ".join(hook_content[:3])
         if trigram not in cap_window:
