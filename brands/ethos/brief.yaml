@@ -4,24 +4,29 @@ app:
   name: "ETHOS"
   one_line: "Daily discipleship for young Christian men 18-25."
   store_url: "https://ethos.app/download"
-  cta_bridge_phrase: "Theory without execution stays theory. ETHOS automates the protocol."
+  cta_bridge_phrase: "ETHOS builds that man one morning at a time. One verse, one identity anchor, one rep — matched to where you actually are."
 
 icp:
   audience: "young Christian men 18-25"
-  jtbd: "Build Christ-centered identity through daily disciplined practice"
+  jtbd: "Become the man God designed — long before any conversation, opportunity, or test forces it"
   fears:
     - "drifting back to old patterns"
     - "performing faith without depth"
-    - "isolation in spiritual formation"
+    - "still being a boy when the world expects a man"
+    - "ending up alone, or worse — with someone who saw through him"
   internal_monologue:
     - "I want to be the kind of man my future children will respect"
     - "I'm tired of streaks I cannot keep"
+    - "I'm done auditioning — I want to actually be him"
+    - "She can tell. They all can tell."
 
 voice:
   principles:
-    - "Direct without being preachy"
-    - "Peer who has been there, not parent"
-    - "Anchored in Scripture, weaponized for action"
+    - "Direct without being preachy. Older brother, not parent."
+    - "Lead with declarative truth. The reader earns the conclusion."
+    - "Scripture is the weapon, not the decoration. Quote it when it cuts."
+    - "Identity language over behavior language: 'become him' beats 'do this'."
+    - "Don't hide from the masculine register. Action verbs, spatial metaphors, conquest, building, protecting."
   # Brand-specific hard-reject words/phrases — ETHOS-specific list (NOT universal infrastructure).
   # Mechanical regex check at strategist + critic stages.
   banned_words:
