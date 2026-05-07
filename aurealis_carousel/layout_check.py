@@ -84,13 +84,27 @@ EXTRACT_JS = r"""
 
 
 def _is_headline(el: dict) -> bool:
-    """Returns True if the element is a headline (h1/h2/h3 OR class t-h1/t-h2/t-h3/t-display)."""
-    if el["tag"] in {"h1", "h2", "h3"}:
+    """Returns True if the element is a PRIMARY headline (h1, h2, t-display, t-h1, t-h2).
+
+    Excludes t-h3 and smaller — those are subheadings/labels and aren't subject
+    to the headline-min-size or hero-ratio rules.
+    """
+    if el["tag"] in {"h1", "h2"}:
+        # If h1/h2 has a smaller-class override (t-h3, t-label, etc.), exempt it
+        classes = set(el.get("classes") or [])
+        if any(c in classes for c in {"t-h3", "t-label", "t-handle", "t-caption"}):
+            return False
         return True
     classes = set(el.get("classes") or [])
-    if any(c in classes for c in {"t-display", "t-h1", "t-h2", "t-h3"}):
+    if any(c in classes for c in {"t-display", "t-h1", "t-h2"}):
         return True
     return False
+
+
+def _is_label_or_caption(el: dict) -> bool:
+    """Small Zone-3 / kicker elements that may live in the bottom safe zone."""
+    classes = set(el.get("classes") or [])
+    return any(c in classes for c in {"t-label", "t-handle", "t-caption"})
 
 
 def _is_body_text(el: dict) -> bool:
@@ -146,8 +160,8 @@ def check_fit(
                 f"text top {rect['top']:.0f}px is inside top safe zone (< {TOP_SAFE}px). Element text: {el['text'][:60]!r}",
                 oh,
             ))
-        # Rule 2 — bottom safe zone
-        if rect["bottom"] > BOTTOM_SAFE:
+        # Rule 2 — bottom safe zone (skip small labels/handles that live in Zone 3 by design)
+        if rect["bottom"] > BOTTOM_SAFE and not _is_label_or_caption(el):
             violations.append(LayoutViolation(
                 "bottom-safe-zone",
                 f"text bottom {rect['bottom']:.0f}px overlaps bottom safe zone (> {BOTTOM_SAFE}px). Element text: {el['text'][:60]!r}",
