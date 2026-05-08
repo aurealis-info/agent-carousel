@@ -1,0 +1,94 @@
+name: Generate carousel
+
+# Two ways to trigger:
+#   1. From the Actions tab in GitHub: pick a brand + (optional) topic and click "Run workflow".
+#   2. From the gh CLI:
+#         gh workflow run generate-carousel.yml -f brand=ethos -f topic='Becoming the man worth marrying'
+#         gh workflow run generate-carousel.yml -f brand=ethos    # no topic = strategist auto-picks
+#
+# Outputs:
+#   - 5 PNG slides + caption.txt + metadata.yaml uploaded as a workflow artifact.
+#   - history/<brand>.yaml updated and committed back to main (so future runs avoid topic repeats).
+#
+# Required repo secrets:
+#   - ANTHROPIC_API_KEY  (issued from console.anthropic.com)
+
+on:
+  workflow_dispatch:
+    inputs:
+      brand:
+        description: 'Brand to generate for (must match a folder under brands/)'
+        required: true
+        default: 'ethos'
+        type: choice
+        options:
+          - ethos
+          - lokin
+          - _test
+      topic:
+        description: 'Optional topic hint (leave blank to let the strategist pick)'
+        required: false
+        default: ''
+        type: string
+
+permissions:
+  contents: write   # so the workflow can commit history/<brand>.yaml back
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Set up Node 20 (required by claude CLI)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Claude CLI
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: Install Playwright browser
+        run: python -m playwright install --with-deps chromium
+
+      - name: Run carousel generation
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -n "${{ inputs.topic }}" ]; then
+            aurealis-carousel generate ${{ inputs.brand }} --topic "${{ inputs.topic }}"
+          else
+            aurealis-carousel generate ${{ inputs.brand }}
+          fi
+
+      - name: Upload rendered slides + metadata
+        uses: actions/upload-artifact@v4
+        with:
+          name: carousel-${{ inputs.brand }}-${{ github.run_id }}
+          path: outputs/${{ inputs.brand }}/
+          retention-days: 30
+
+      - name: Commit history back to main
+        run: |
+          git config user.name 'aurealis-carousel-bot'
+          git config user.email 'noreply@aurealis.app'
+          git add history/${{ inputs.brand }}.yaml
+          if ! git diff --cached --quiet; then
+            git commit -m "history: ${{ inputs.brand }} run ${{ github.run_id }}"
+            git push origin HEAD:${{ github.ref_name }}
+          else
+            echo "No history changes to commit."
+          fi

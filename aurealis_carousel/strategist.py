@@ -45,7 +45,7 @@ def _parse_hashtag_range(brand: dict) -> tuple[int, int]:
     return 8, 12
 
 
-def _build_prompt(brand, font_library, history, user_topic_hint, playbook) -> str:
+def _build_prompt(brand, font_library, history, user_topic_hint, playbook, content_guidelines: str = "") -> str:
     pairings = "\n".join(
         f"- {p['id']}: {p['vibe']} (goals: {p['goals']})"
         for p in font_library["pairings"]
@@ -60,7 +60,10 @@ def _build_prompt(brand, font_library, history, user_topic_hint, playbook) -> st
     sc = brand.get("narrative", {}).get("slide_count", {"min": 5, "max": 9})
     banned_words = brand.get("voice", {}).get("banned_words", [])
     voice_attributes = brand.get("voice", {}).get("attributes", [])
-    content_guidelines = brand.get("content_guidelines", "").strip()
+    # content_guidelines preferred from caller (orchestrator resolves files);
+    # fall back to inline brand.content_guidelines for backward compat / tests.
+    content_guidelines = (content_guidelines or brand.get("content_guidelines") or "").strip()
+    app_surfaces = brand.get("app_surfaces", {})
     brand_lines_in_sand = brand.get("brand_lines_in_sand", [])
     variety_rules = brand.get("narrative", {}).get("variety_rules", [])
     recent_topics = [h.get("slug", "") for h in history[-14:]]
@@ -91,8 +94,11 @@ BRAND-SPECIFIC HARD-REJECT WORDS (do NOT use these literal words/phrases):
 BRAND LINES IN THE SAND (never cross these — even if the topic invites it):
 {yaml.safe_dump(brand_lines_in_sand) if brand_lines_in_sand else '(none)'}
 
-BRAND CONTENT GUIDELINES (substantive direction — read as principles, not template):
+BRAND CONTENT GUIDELINES (substantive + format direction — read as principles, not template):
 {content_guidelines if content_guidelines else '(none)'}
+
+APP SURFACES (slide-4 must name ONE of these; slide-5 CTA must repeat the same name):
+{yaml.safe_dump(app_surfaces) if app_surfaces else '(none)'}
 
 VOICE MODES AVAILABLE: {allowed_modes}
 DEFAULT VOICE MODE FOR THIS BRAND: {default_mode}
@@ -255,7 +261,9 @@ def _validate(response: dict, brand: dict, font_library: dict, history: list) ->
     )
 
 
-def generate_strategy(*, brand, font_library, history, user_topic_hint, playbook) -> StrategistResult:
-    prompt = _build_prompt(brand, font_library, history, user_topic_hint, playbook)
+def generate_strategy(*, brand, font_library, history, user_topic_hint, playbook,
+                      content_guidelines: str = "") -> StrategistResult:
+    prompt = _build_prompt(brand, font_library, history, user_topic_hint, playbook,
+                           content_guidelines=content_guidelines)
     response = query_json(prompt)   # tools disabled — strategist is a pure text→JSON call
     return _validate(response, brand, font_library, history)

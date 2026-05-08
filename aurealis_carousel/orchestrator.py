@@ -34,6 +34,24 @@ def _load_playbook() -> dict[str, str]:
     return pb
 
 
+def _load_content_guidelines(brand: dict) -> str:
+    """Resolve brand['content_guidelines_files'] paths under REPO_ROOT and concat
+    them into one block, with a header per file so the strategist can cite source.
+    Falls back to brand['content_guidelines'] (string) if no files specified.
+    Missing files are skipped with a stderr warning rather than failing the run."""
+    paths = brand.get("content_guidelines_files") or []
+    if not paths:
+        return (brand.get("content_guidelines") or "").strip()
+    chunks: list[str] = []
+    for rel in paths:
+        p = (REPO_ROOT / rel).resolve()
+        if not p.exists():
+            print(f"warning: content_guidelines file not found: {rel}")
+            continue
+        chunks.append(f"# === {rel} ===\n\n{p.read_text().strip()}")
+    return "\n\n".join(chunks)
+
+
 def _slide_dict_to_content(d: dict, fallback_i: int) -> designer_mod.SlideContent:
     return designer_mod.SlideContent(
         i=d.get("i", fallback_i),
@@ -73,6 +91,8 @@ def run(
     else:
         history = []
 
+    content_guidelines = _load_content_guidelines(brand)
+
     # Phase 1 — strategist
     strat = strategist_mod.generate_strategy(
         brand=brand,
@@ -80,6 +100,7 @@ def run(
         history=history,
         user_topic_hint=user_topic_hint,
         playbook=playbook,
+        content_guidelines=content_guidelines,
     )
 
     # Resolve primary pairing + build @font-face block

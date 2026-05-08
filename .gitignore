@@ -13,3 +13,11 @@ outputs/**/_debug/
 
 .env
 *.log
+
+# marketing/ — only text guidelines + documentation are versioned.
+# Heavy reference material (PDFs, screenshots, mockups) stays local.
+marketing/APPDESIGN/
+marketing/ASSETS/
+marketing/ONBOARDING/
+marketing/Inspiration_Reels/
+marketing/aurealis_marketing_skills_simon/
