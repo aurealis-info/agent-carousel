@@ -46,9 +46,6 @@ def query(
         # Claude can opportunistically call `mcp__figma__...` and burn `--max-turns` on
         # `tool_use` exits — even when --tools "" disables built-ins.
         "--strict-mcp-config",
-        # Bare mode prevents hooks (Stop, PreTool, etc.) from the parent Claude Code
-        # session firing inside the subprocess and corrupting the JSON envelope.
-        "--bare",
     ]
     # Tool-availability semantics:
     #   allowed_tools is None  → all built-in tools disabled (pure text → JSON call)
