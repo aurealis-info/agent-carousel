@@ -45,8 +45,14 @@ Paste this verbatim into the routine's prompt field:
 Generate a new ETHOS Instagram carousel.
 
 Steps:
-1. Run the carousel CLI:
+1. Run the carousel CLI from the repo root. Try the shortcut first; if it's
+   not on PATH, fall back to invoking the module directly via the venv setup.sh
+   creates at $HOME/.venvs/aurealis-carousel/bin/python:
+
        aurealis-carousel generate ethos
+       # OR if the shortcut isn't on PATH:
+       $HOME/.venvs/aurealis-carousel/bin/python -m aurealis_carousel.cli generate ethos
+
    This invokes the strategist (one Claude call), designer (one call per slide),
    layout-fit validator, vision critic, and Playwright renderer. Expect ~5-10
    minutes total. The strategist auto-picks a topic from the 10 themes in
@@ -130,6 +136,15 @@ deploy hook, or just run it from your terminal.
 ## Troubleshooting
 
 Failure modes the routine has actually hit, with fixes:
+
+**`pip install` fails with "Package requires Python >= 3.12" or PEP 668**
+The cloud env's default `python` is 3.11 even though `python3.12` and
+`python3.13` exist. Plus system pip is locked down (PEP 668). `setup.sh`
+handles this — it auto-detects the highest 3.12+ interpreter, creates a
+venv at `$HOME/.venvs/aurealis-carousel`, and persists the venv on PATH
+via `~/.bashrc`/`~/.profile`/`$BASH_ENV`. If the agent still can't find
+`aurealis-carousel`, the routine prompt instructs it to fall back to
+`$HOME/.venvs/aurealis-carousel/bin/python -m aurealis_carousel.cli ...`.
 
 **`git push origin main` → 403 "Resource not accessible by integration"**
 The Claude GitHub App is installed but the routine isn't allowed to push to
