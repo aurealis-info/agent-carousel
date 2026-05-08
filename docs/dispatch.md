@@ -137,6 +137,20 @@ deploy hook, or just run it from your terminal.
 
 Failure modes the routine has actually hit, with fixes:
 
+**`subprocess.TimeoutExpired` after 360s on a designer call**
+The `claude -p` subprocess sometimes takes 5-8 minutes per call in cloud
+routine envs (vs 2-4 min local) because of auth handshake + queueing
+behind the parent session. `CLAUDE_TIMEOUT_SECONDS = 720` covers it. If
+you still see timeouts, bump it further in `aurealis_carousel/claude_cli.py`
+— honest failures still surface in reasonable wall-clock at higher values.
+
+**Routine ran, but agent had to manually `pip install --break-system-packages`**
+This means the routine's **Setup script** field is empty (or wrong). Open
+the routine in claude.ai/code/routines, find the Setup script box, and
+make sure it contains exactly `bash setup.sh`. Without it the agent has
+to bootstrap Python deps on every run — slow, fragile, and skips the
+venv path that handles PEP 668 cleanly.
+
 **`pip install` fails with "Package requires Python >= 3.12" or PEP 668**
 The cloud env's default `python` is 3.11 even though `python3.12` and
 `python3.13` exist. Plus system pip is locked down (PEP 668). `setup.sh`

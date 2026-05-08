@@ -20,7 +20,7 @@ import shutil
 import subprocess
 from typing import Optional
 
-CLAUDE_TIMEOUT_SECONDS = 360   # large prompts (full brief + 4 playbooks) routinely take 2-4 min on Opus 4.7
+CLAUDE_TIMEOUT_SECONDS = 720   # local: 2-4 min; cloud routine envs sometimes hit 6-8 min on a single call (auth handshake + queueing). 12 min covers the worst case observed; honest failures still surface within reasonable wall-clock.
 DEFAULT_MODEL = "claude-opus-4-7"
 SUBPROCESS_CWD = "/tmp"
 
