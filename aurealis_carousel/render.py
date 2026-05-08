@@ -1,4 +1,6 @@
 """HTML/CSS → 1080x1350 PNG via Playwright."""
+import glob
+import os
 import tempfile
 from pathlib import Path
 from typing import Optional
@@ -7,6 +9,37 @@ from jinja2 import Template
 from playwright.sync_api import sync_playwright
 
 CANVAS_W, CANVAS_H = 1080, 1350
+
+# Glob patterns Anthropic Routine cloud envs use for pre-baked Chromium.
+# Both forms have been observed; we scan all of them for defense-in-depth.
+_PW_BROWSERS_GLOBS = (
+    "/opt/pw-browsers/chromium_headless_shell-*/chrome-linux/headless_shell",
+    "/opt/pw-browsers/chromium-*/chrome-linux/chrome",
+)
+
+
+def _resolve_chromium_executable() -> Optional[str]:
+    """Return a Chromium executable path if PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH
+    is set or a pre-baked binary is found under /opt/pw-browsers, else None.
+
+    Returning None means "let Playwright pick its bundled binary" — the right
+    behavior for local dev where `playwright install` worked normally.
+    """
+    exe = os.environ.get("PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH")
+    if exe:
+        return exe
+    for pattern in _PW_BROWSERS_GLOBS:
+        matches = sorted(glob.glob(pattern))
+        if matches:
+            return matches[0]
+    return None
+
+
+def _launch_chromium(p):
+    exe = _resolve_chromium_executable()
+    if exe:
+        return p.chromium.launch(executable_path=exe)
+    return p.chromium.launch()
 
 
 def render_slide(
@@ -37,16 +70,9 @@ def render_slide(
         tmp.write(html)
         tmp_path = Path(tmp.name)
 
-    # Resolve headless shell binary: prefer env override, then scan /opt/pw-browsers.
-    import os, glob as _glob
-    _exe = os.environ.get("PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH") or next(
-        iter(sorted(_glob.glob("/opt/pw-browsers/chromium_headless_shell-*/chrome-linux/headless_shell"))),
-        None,
-    )
-
     try:
         with sync_playwright() as p:
-            browser = p.chromium.launch(executable_path=_exe)
+            browser = _launch_chromium(p)
             ctx = browser.new_context(viewport={"width": CANVAS_W, "height": CANVAS_H})
             page = ctx.new_page()
             page.goto(f"file://{tmp_path}")

@@ -127,6 +127,44 @@ deploy hook, or just run it from your terminal.
 
 ---
 
+## Troubleshooting
+
+Failure modes the routine has actually hit, with fixes:
+
+**`git push origin main` → 403 "Resource not accessible by integration"**
+The Claude GitHub App is installed but the routine isn't allowed to push to
+`main`. Fix: in the routine's settings → **Behavior** tab, enable
+**"Allow unrestricted branch pushes"**. Without it, only `claude/`-prefixed
+branch pushes are accepted.
+
+**Playwright "Executable doesn't exist at .../chrome-linux/chrome"**
+Cloud env ships a Chromium pre-baked at `/opt/pw-browsers/chromium-<rev>/`
+but at a build that doesn't match what `pip install playwright` expects.
+`setup.sh` already handles this — it tries `playwright install chromium`,
+falls back to the preinstalled binary, and exports
+`PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` for `render.py` / `layout_check.py`.
+If you see this error, check the setup-script log: did it find a binary?
+
+**`error_max_turns` on a strategist or designer call**
+Two known causes:
+1. CLI v2.1.133+ counts session-init as a turn, so `--max-turns 1` exits
+   without producing output. `claude_cli.py` defaults to `max_turns=2`.
+2. The parent `claude` session's CLAUDE.md gets auto-discovered by the
+   subprocess and turns the strategist into an agentic coder. Fixed by
+   running the subprocess with `cwd=/tmp` (no CLAUDE.md there).
+
+If you see `error_max_turns` despite both fixes, a globally-configured MCP
+server is leaking in. `claude_cli.py` already passes `--strict-mcp-config`,
+but check your routine's connectors list — if you've attached anything
+unnecessary (Notion, Figma, etc.), remove it.
+
+**Routine session burns turns running `git status` / listing files**
+Same root cause as #2 above (CLAUDE.md leaking into subprocess). The fix
+is committed; if you see it again, verify `claude_cli.py` still passes
+`cwd=SUBPROCESS_CWD`.
+
+---
+
 ## Local dev (when you don't want a routine)
 
 The CLI runs the same code path locally:

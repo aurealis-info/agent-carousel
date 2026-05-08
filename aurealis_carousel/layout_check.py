@@ -12,6 +12,8 @@ from typing import Optional
 from jinja2 import Template
 from playwright.sync_api import sync_playwright
 
+from aurealis_carousel.render import _launch_chromium
+
 CANVAS_W, CANVAS_H = 1080, 1350
 TOP_SAFE = 135
 BOTTOM_SAFE = 1350 - 270   # = 1080
@@ -134,7 +136,7 @@ def _render_dom(slide_body_html, brand_css_path, slide_shell_path, pairing_font_
         tmp_path = Path(tmp.name)
     try:
         with sync_playwright() as p:
-            browser = p.chromium.launch()
+            browser = _launch_chromium(p)
             ctx = browser.new_context(viewport={"width": CANVAS_W, "height": CANVAS_H})
             page = ctx.new_page()
             page.goto(f"file://{tmp_path}")

@@ -1,12 +1,19 @@
 """Subprocess wrapper around the `claude` CLI binary.
 
 Each phase module that needs Claude calls query() or query_json() from here.
-Calls are single-shot (--max-turns 1) and return parsed JSON envelopes.
+Calls are single-shot text→JSON returns and shell out with --max-turns 2.
 This is the ONLY module in the codebase that shells out to `claude`.
 
 Prompts are passed via stdin (not as positional argv) because the CLI's
 --allowedTools flag is variadic and would otherwise greedily consume the
 prompt as part of the tools list, leaving no positional input.
+
+Subprocesses run with cwd=/tmp so the parent project's CLAUDE.md is not
+auto-discovered by the child `claude` process. Without this, calls made
+from inside agent-carousel/ inherit instructions that turn the strategist /
+designer into an agentic coder ("run git status, then list files...") and
+the JSON envelope never arrives. /tmp has no CLAUDE.md so the call stays
+hermetic.
 """
 import json
 import shutil
@@ -15,6 +22,7 @@ from typing import Optional
 
 CLAUDE_TIMEOUT_SECONDS = 360   # large prompts (full brief + 4 playbooks) routinely take 2-4 min on Opus 4.7
 DEFAULT_MODEL = "claude-opus-4-7"
+SUBPROCESS_CWD = "/tmp"
 
 
 class ClaudeCLIError(Exception):
@@ -32,7 +40,7 @@ def query(
     prompt: str,
     model: str = DEFAULT_MODEL,
     allowed_tools: Optional[list[str]] = None,
-    max_turns: int = 1,
+    max_turns: int = 2,
     timeout: int = CLAUDE_TIMEOUT_SECONDS,
 ) -> str:
     ensure_available()
@@ -43,7 +51,7 @@ def query(
         "--output-format", "json",
         # Hermetic subprocess: ignore all globally-configured MCP servers (figma, notion,
         # vercel, etc.) that would otherwise leak in as available tools. Without this,
-        # Claude can opportunistically call `mcp__figma__...` and burn `--max-turns` on
+        # Claude can opportunistically call `mcp__figma__...` and consume turns on
         # `tool_use` exits — even when --tools "" disables built-ins.
         "--strict-mcp-config",
     ]
@@ -57,7 +65,10 @@ def query(
         cmd += ["--tools", ""]
     elif allowed_tools:
         cmd += ["--allowedTools", ",".join(allowed_tools)]
-    proc = subprocess.run(cmd, input=prompt, capture_output=True, text=True, timeout=timeout)
+    proc = subprocess.run(
+        cmd, input=prompt, capture_output=True, text=True, timeout=timeout,
+        cwd=SUBPROCESS_CWD,
+    )
     if proc.returncode != 0:
         raise ClaudeCLIError(
             f"claude exited {proc.returncode}.\n"
