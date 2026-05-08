@@ -37,9 +37,16 @@ def render_slide(
         tmp.write(html)
         tmp_path = Path(tmp.name)
 
+    # Resolve headless shell binary: prefer env override, then scan /opt/pw-browsers.
+    import os, glob as _glob
+    _exe = os.environ.get("PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH") or next(
+        iter(sorted(_glob.glob("/opt/pw-browsers/chromium_headless_shell-*/chrome-linux/headless_shell"))),
+        None,
+    )
+
     try:
         with sync_playwright() as p:
-            browser = p.chromium.launch()
+            browser = p.chromium.launch(executable_path=_exe)
             ctx = browser.new_context(viewport={"width": CANVAS_W, "height": CANVAS_H})
             page = ctx.new_page()
             page.goto(f"file://{tmp_path}")

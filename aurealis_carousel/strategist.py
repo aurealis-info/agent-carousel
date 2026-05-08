@@ -265,5 +265,5 @@ def generate_strategy(*, brand, font_library, history, user_topic_hint, playbook
                       content_guidelines: str = "") -> StrategistResult:
     prompt = _build_prompt(brand, font_library, history, user_topic_hint, playbook,
                            content_guidelines=content_guidelines)
-    response = query_json(prompt)   # tools disabled — strategist is a pure text→JSON call
+    response = query_json(prompt, max_turns=3)  # allow up to 3 turns in case cli makes a tool call before producing JSON
     return _validate(response, brand, font_library, history)
