@@ -13,6 +13,20 @@ Pairings exist on three vibe axes (see `fonts/library.yaml` for the full set):
 
 **Why some pairings fail:** Bebas Neue + Lora — towering industrial sans-serif against delicate low-contrast calligraphic serif. X-heights clash; tonal weight disparity creates schizophrenic identity.
 
+## The weight ladder is the system
+
+A serious editorial carousel uses ONE display family across at least four weights — typically 200/400/700/900 — and treats the leap between weights as the primary visual rhythm. A slide reads "expensive" when a thin 200-weight subhead sits under a 900-weight hero word; it reads "amateur" when both are at 700.
+
+Variable fonts (Fraunces, Inter, Bodoni Moda) make this cheap: one @import URL gives you the full axis range. Use it. If the brand's pairing exposes 5+ weights, use at least 3 of them in any given carousel — display weight (700-900), body weight (400), and one hairline or italic counterweight (300-400 italic).
+
+Two-weight monocultures (everything-at-700) are the #1 reason flat-looking carousels happen even with good fonts.
+
+## Optical-size axis (when available)
+
+Modern variable serifs (Fraunces, Bodoni Moda, Source Serif Pro) expose an `opsz` (optical size) axis. Setting `font-variation-settings: 'opsz' 144` on display classes makes the strokes carved-stone solid; setting `opsz 9` on body keeps them readable at small sizes. The same family looks like two different typefaces across the axis. Use the optical size axis on any class ≥ 64px.
+
+The role classes in `brand.css` already set opsz per-role (.t-display = 144, .t-h1 = 96, .t-h2 = 72, .t-h3 = 48). Don't override unless a deliberate axis shift is the move.
+
 ## Scale ratios — the 3:1 hero rule
 
 Hierarchy at 1080×1350 portrait demands extreme mathematical contrast.
@@ -20,7 +34,9 @@ Hierarchy at 1080×1350 portrait demands extreme mathematical contrast.
 - **Minimum 3:1 H1-to-body ratio.** Standard word-processor ratios fail on mobile.
 - **Grounded authority** layout: 90pt H1, 30pt body.
 - **Brutalist shouty** layout: 120pt H1+, body still 30-32pt.
-- **Body never below 30pt** — mobile legibility floor.
+- **Editorial-cinematic** layout: display 168-240pt, body 28-32pt — 5-6× ratio. Steeper than amateur ratios on purpose; the gap is the drama.
+- **Stat-callout** slides: number at 380-420pt, caption at 22-28pt — ~15× ratio. Single number occupies most of the canvas.
+- **Body never below 22pt** — mobile legibility floor.
 
 ## Weight contrast
 
@@ -84,6 +100,14 @@ Reference creators known for typographic excellence (study their structural disc
 - **@mate_urbin** — expansive letter-spacing on micro-copy and kickers; premium feel.
 - **@gerardadams** — Hero word treatment to anchor long-form copy.
 - **@kickass_ux** — modular typographic blocks for digestible educational density.
+
+## Visual rest slides — the "missing slide" most carousels skip
+
+A premium 5-9 slide carousel always has 1-2 slides with almost no text — one word, one number, one symbol, one italic phrase. Without rest slides, even good typography reads as a wall.
+
+The rest slide is where the typographic system gets to flex without competing copy: a 240px MEGA-WORD at weight 900 with a full stop, an italic display-italic phrase set in 168px Fraunces italic with 90px breathing room above and below, a single roman numeral in gold at the top-left of an otherwise empty canvas.
+
+If every slide is medium-loud, the carousel reads as one undifferentiated block. The strategist should plan at least one quiet slide per arc; the designer should compose it as a rest move (MEGA-WORD REST or ITALIC DISPLAY REST per the layout-moves guide), not as a half-loud slide with less text.
 
 ## Typographic anti-patterns — auto-reject
 

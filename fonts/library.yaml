@@ -104,19 +104,21 @@ pairings:
 
   - id: recoleta-berthold
     heading:
-      family: "Bebas Neue"
-      weights: [400]
+      family: "Fraunces"
+      weights: [300, 400, 500, 600, 700, 800, 900]
       source: google
-      families: ["Bebas+Neue"]
+      # Full variable axes: italic (0/1), optical size (9..144), weight (300..900).
+      # opsz is what makes Fraunces look carved-stone at display vs spindly at body.
+      families: ["Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900"]
     body:
-      family: "Playfair Display"
-      weights: [400, 500, 700, 800, 900]
+      family: "Inter"
+      weights: [300, 400, 500, 600, 700, 800]
       source: google
-      families: ["Playfair+Display:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,700"]
-    goals: [editorial-authority, gravitas, sophistication, depth]
-    emotions: [weighty, considered, premium, established]
-    vibe: "Magazine-cover authority. Playfair carries body and headline weight; Bebas is the loud condensed pull-quote."
-    pairs_well_with: [thought-leadership, finance, philosophy, deep-content, masculine-discipline]
-    references: [art-direction-driven-editorial]
+      families: ["Inter:ital,wght@0,300..800;1,300..700"]
+    goals: [editorial-authority, gravitas, sophistication, depth, art-direction]
+    emotions: [weighty, considered, premium, established, carved-stone]
+    vibe: "Magazine-cover authority. Fraunces (variable serif with optical-size axis) carries display + scripture-italic + drop-caps; Inter handles body + tracked-caps eyebrows. Single serif working five jobs through weight + optical-size + italic axes — the system, not the pair, does the work."
+    pairs_well_with: [thought-leadership, finance, philosophy, deep-content, masculine-discipline, premium-spiritual, editorial-cinematic]
+    references: [art-direction-driven-editorial, magazine-cover-typography, monocle-the-atlantic-vogue-register]
     license: "Both fonts are open-licensed via Google Fonts — commercial-safe."
     license_status: commercial-safe

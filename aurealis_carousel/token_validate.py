@@ -47,7 +47,21 @@ def _approved_palette(brand: dict) -> set[str]:
 
 
 def _approved_size_tokens() -> set[str]:
-    return {"120px", "88px", "64px", "44px", "32px", "22px"}
+    # Modular scale calibrated for 1080×1350 IG canvas. 11 sizes from micro
+    # to stat. Matches the --type-* tokens in brands/<brand>/brand.css.
+    return {
+        "14px",   # micro / footer legal
+        "18px",   # eyebrow / tracked label
+        "22px",   # body-sm / caption / handle
+        "28px",   # body
+        "34px",   # body-lg / hook subhead
+        "48px",   # h3
+        "72px",   # h2
+        "108px",  # h1
+        "168px",  # display
+        "240px",  # mega / drop cap
+        "420px",  # stat callout
+    }
 
 
 def _find_offending_color_literal(value: str, palette: set[str]) -> Optional[str]:

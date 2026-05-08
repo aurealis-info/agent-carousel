@@ -19,8 +19,8 @@ LEFT_SAFE = 86
 RIGHT_SAFE = 1080 - 86     # = 994
 GRID_CROP_TOP = 135        # central 1080x1080 in 1080x1350 canvas
 GRID_CROP_BOTTOM = 1215    # 135 + 1080
-MIN_BODY_PX = 30
-MIN_HEADLINE_PX = 88
+MIN_BODY_PX = 22       # mobile-readable lower bound; matches t-body-sm
+MIN_HEADLINE_PX = 72   # smallest acceptable section heading; matches t-h2
 HERO_RATIO_MIN = 3.0
 CRAMMING_MIN_GAP_PX = 16
 
@@ -45,7 +45,7 @@ class LayoutFitResult:
             lines.append(f"  - [{v.rule}] {v.detail}")
         lines.append(
             "Reposition the offending element(s). Text-safe zones: top 135px, "
-            "sides 86px, bottom 270px. Headlines >= 88px font-size; body >= 30px; "
+            "sides 86px, bottom 270px. Headlines >= 72px font-size; body >= 22px; "
             "hero ratio >= 3:1 (largest headline / largest body)."
         )
         return "\n".join(lines)
@@ -84,19 +84,21 @@ EXTRACT_JS = r"""
 
 
 def _is_headline(el: dict) -> bool:
-    """Returns True if the element is a PRIMARY headline (h1, h2, t-display, t-h1, t-h2).
+    """Returns True if the element is a PRIMARY headline.
 
-    Excludes t-h3 and smaller — those are subheadings/labels and aren't subject
-    to the headline-min-size or hero-ratio rules.
+    Display-class headlines: t-display, t-display-italic, t-h1, t-h2, t-mega, t-stat.
+    Excludes t-h3 (section subheading), labels, handles, body sizes — those are not
+    subject to headline-min-size or hero-ratio.
     """
-    if el["tag"] in {"h1", "h2"}:
-        # If h1/h2 has a smaller-class override (t-h3, t-label, etc.), exempt it
-        classes = set(el.get("classes") or [])
-        if any(c in classes for c in {"t-h3", "t-label", "t-handle", "t-caption"}):
-            return False
-        return True
     classes = set(el.get("classes") or [])
-    if any(c in classes for c in {"t-display", "t-h1", "t-h2"}):
+    if any(c in classes for c in {"t-display", "t-display-italic", "t-h1", "t-h2", "t-mega", "t-stat"}):
+        return True
+    if el["tag"] in {"h1", "h2"}:
+        # Tag-based fallback: skip if class explicitly demotes the element
+        if any(c in classes for c in {"t-h3", "t-body", "t-body-lg", "t-body-sm",
+                                       "t-label", "t-handle", "t-caption", "t-eyebrow",
+                                       "t-scripture-ref", "t-micro"}):
+            return False
         return True
     return False
 
@@ -108,10 +110,16 @@ def _is_label_or_caption(el: dict) -> bool:
 
 
 def _is_body_text(el: dict) -> bool:
-    if el["tag"] == "p":
-        return True
     classes = set(el.get("classes") or [])
-    return "t-body" in classes
+    if any(c in classes for c in {"t-body", "t-body-lg", "t-body-sm", "t-pullquote"}):
+        return True
+    if el["tag"] == "p":
+        # Tag-based fallback: <p> defaults to body unless explicitly demoted to label/eyebrow
+        if any(c in classes for c in {"t-label", "t-handle", "t-caption", "t-eyebrow",
+                                       "t-scripture-ref", "t-micro"}):
+            return False
+        return True
+    return False
 
 
 def _render_dom(slide_body_html, brand_css_path, slide_shell_path, pairing_font_faces) -> list[dict]:

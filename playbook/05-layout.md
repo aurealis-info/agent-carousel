@@ -79,6 +79,25 @@ The strategist names ONE composition per slide from this enum. Each has a define
 - **Geometry:** Dead-center horizontal and vertical alignment, often with inverted background.
 - **Best for:** Climax slide N-1, final CTA slide. Demands total focus; maximum visual weight.
 
+## Ten typographic layout moves
+
+Compositions (Billboard / Split-Screen / Staircase / Monolith / Bullseye) define the GEOMETRY. Layout moves define the TYPOGRAPHIC TREATMENT inside that geometry. Pick exactly ONE move per slide — composing two on the same slide produces visual noise.
+
+| # | Move | Mechanic | Best for |
+|---|---|---|---|
+| 1 | **Stat Drop** | Single number at 380-420px occupies ~60% of canvas; tracked-caps label below. No body. | Metric / count / percentage / roman-numeral slide |
+| 2 | **Drop-Cap Opener** | One paragraph of body, first letter rendered at 240px gold. The cap IS the design. | Slide 2 opener of a long thought (use once per carousel max) |
+| 3 | **Italic Display Rest** | One italic phrase at 168px display-italic, generous breathing room above and below. | Scripture, thesis statement, single declarative truth |
+| 4 | **Eyebrow / Hero / Tagline Stack** | Tracked-caps eyebrow → heavy hero → light italic lowercase tagline. Drumbeat → impact → echo. | Hook slides, value-tip slides, bridge slides |
+| 5 | **Vertical Rule Pullquote** | Italic 72px with 2px gold left rule, 36px padding, scripture-ref label below. | Scripture quote slides — never put a headline above the quote |
+| 6 | **Hung Initial Quote** | Oversized opening " or ' at 240px gold, offset into the left margin; quote body in italic h2. | Magazine-cover quote feature; founder thesis |
+| 7 | **Mega-Word Rest** | One word at 240px tight kerning. Full stop is mandatory and is part of the typography. | One-word verdicts, identity claims, climax slides |
+| 8 | **Asymmetric Kicker** | Section label set vertically (transform: rotate(-90deg)) along left edge in tracked caps. | Body slides where you want "printed and bound" register |
+| 9 | **Roman Numeral Chapter Marker** | Each non-hook slide opens with I, II, III in display-size gold at top-left; title beneath. | Chapter-style carousels (5-slide listicles, 3-act structures) |
+| 10 | **All-Caps Hero + Lowercase Tagline** | Hero in display ALL CAPS, tagline beneath in body-lg lowercase italic. | Hooks where the case-leap is the design — masculine declaration → quiet underline |
+
+**Use a comment in the rendered HTML to mark which move was applied** — e.g., `<!-- move: STAT DROP -->`. This makes the vision critic's job easier and helps post-mortems.
+
 ## Layout anti-patterns — auto-reject
 
 1. **Ignoring grid cropping** — Hook text outside the central 1080×1080 square gets truncated on the profile grid preview.
