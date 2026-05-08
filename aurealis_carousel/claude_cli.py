@@ -9,6 +9,7 @@ Prompts are passed via stdin (not as positional argv) because the CLI's
 prompt as part of the tools list, leaving no positional input.
 """
 import json
+import os
 import shutil
 import subprocess
 from typing import Optional
@@ -57,7 +58,9 @@ def query(
         cmd += ["--tools", ""]
     elif allowed_tools:
         cmd += ["--allowedTools", ",".join(allowed_tools)]
-    proc = subprocess.run(cmd, input=prompt, capture_output=True, text=True, timeout=timeout)
+    env = os.environ.copy()
+    env["AUREALIS_PIPELINE_RUN"] = "1"
+    proc = subprocess.run(cmd, input=prompt, capture_output=True, text=True, timeout=timeout, env=env)
     if proc.returncode != 0:
         raise ClaudeCLIError(
             f"claude exited {proc.returncode}.\n"
