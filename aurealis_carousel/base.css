@@ -1,0 +1,250 @@
+/* aurealis_carousel/base.css — universal type/spacing/role-class layer. Per-carousel palette + pairing CSS is prepended by css_compile.py. */
+
+:root {
+  /* FONT TOKENS — overridden by font_faces.py per chosen pairing. */
+  --font-heading:  'Fraunces', serif;
+  --font-body:     'Inter', sans-serif;
+  --font-emphasis: var(--font-heading);
+
+  /* TYPE SCALE — modular (~1.414 augmented-fourth above 32px), 10 sizes.
+     Calibrated for 1080×1350 IG canvas. */
+  --type-micro:    14px;   /* legal / footer micro-copy */
+  --type-eyebrow:  18px;   /* tracked all-caps labels */
+  --type-body-sm:  22px;   /* meta / caption */
+  --type-body:     28px;   /* default body */
+  --type-body-lg:  34px;   /* hook subheads, lede */
+  --type-h3:       48px;   /* tertiary heading */
+  --type-h2:       72px;   /* section heading */
+  --type-h1:      108px;   /* slide headline */
+  --type-display: 168px;   /* hero hook */
+  --type-mega:    240px;   /* single-word rest slide / drop cap */
+  --type-stat:    420px;   /* metric callout */
+
+  /* SPACING + RADIUS */
+  --sp-1: 8px;  --sp-2: 16px; --sp-3: 24px; --sp-4: 32px;
+  --sp-5: 48px; --sp-6: 64px; --sp-7: 96px; --sp-8: 128px;
+  --radius-sm: 8px; --radius-md: 16px; --radius-pill: 999px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Slide canvas — only place geometry is hardcoded. */
+.slide    { width: 1080px; height: 1350px; position: relative; overflow: hidden; }
+.slide-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* ==========================================================================
+   SEMANTIC TYPOGRAPHY — text role only, never position.
+   Fraunces axes: 'opsz' 9..144 (low=text, high=display); 'wght' 300..900;
+   ital via font-style: italic.
+   Each class is one job. Compose via utilities below; do not mix roles.
+   ========================================================================== */
+
+.t-display {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: var(--type-display);
+  font-variation-settings: 'opsz' 144;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.t-display-italic {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--type-display);
+  font-variation-settings: 'opsz' 144;
+  line-height: 0.96;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.t-mega {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: var(--type-mega);
+  font-variation-settings: 'opsz' 144;
+  line-height: 0.85;
+  letter-spacing: -0.045em;
+}
+.t-stat {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: var(--type-stat);
+  font-variation-settings: 'opsz' 144;
+  line-height: 0.85;
+  letter-spacing: -0.045em;
+  font-feature-settings: 'tnum' 1, 'lnum' 1;
+}
+.t-h1 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--type-h1);
+  font-variation-settings: 'opsz' 96;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.t-h2 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--type-h2);
+  font-variation-settings: 'opsz' 72;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+.t-h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--type-h3);
+  font-variation-settings: 'opsz' 48;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+}
+.t-pullquote {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--type-h2);
+  font-variation-settings: 'opsz' 72;
+  line-height: 1.18;
+  letter-spacing: -0.005em;
+  border-left: 2px solid var(--color-secondary);
+  padding-left: 36px;
+}
+.t-body-lg {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--type-body-lg);
+  line-height: 1.4;
+  letter-spacing: 0.005em;
+  max-width: 28ch;
+}
+.t-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--type-body);
+  line-height: 1.5;
+  letter-spacing: 0.005em;
+  max-width: 32ch;
+}
+.t-body-sm {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--type-body-sm);
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+}
+.t-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--type-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  line-height: 1.0;
+}
+.t-scripture-ref {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--type-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  color: var(--color-secondary);
+  line-height: 1.0;
+}
+.t-label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--type-body-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  line-height: 1.0;
+}
+.t-handle {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--type-body-sm);
+  color: var(--color-text-muted);
+  letter-spacing: 0.01em;
+}
+.t-caption {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--type-body-sm);
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+.t-micro {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--type-micro);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   DROP CAP — applies an oversized first letter to the next paragraph.
+   Use sparingly (slide 2 opener, once per carousel max).
+   ========================================================================== */
+.t-dropcap::first-letter {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: var(--type-mega);
+  font-variation-settings: 'opsz' 144;
+  float: left;
+  margin: 6px 18px -8px 0;
+  color: var(--color-secondary);
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+}
+
+/* ==========================================================================
+   UTILITIES — combine with role classes. Tracking, case, numerals, italic.
+   ========================================================================== */
+
+/* Tracking */
+.u-track-tight  { letter-spacing: -0.04em; }
+.u-track-snug   { letter-spacing: -0.015em; }
+.u-track-normal { letter-spacing: 0; }
+.u-track-loose  { letter-spacing: 0.18em; }
+.u-track-wide   { letter-spacing: 0.32em; }
+
+/* Case */
+.u-caps         { text-transform: uppercase; }
+.u-lower        { text-transform: lowercase; }
+.u-smallcaps    { font-variant-caps: all-small-caps; letter-spacing: 0.12em; }
+
+/* Italic toggle */
+.u-italic       { font-style: italic; }
+
+/* Numerals — for stats, lists, dates */
+.u-tnum         { font-variant-numeric: tabular-nums lining-nums; }
+.u-roman        { font-variant-numeric: oldstyle-nums; }
+
+/* Color utilities */
+.c-primary    { color: var(--color-primary); }
+.c-secondary  { color: var(--color-secondary); }
+.c-accent     { color: var(--color-accent); }
+.c-text       { color: var(--color-text); }
+.c-muted      { color: var(--color-text-muted); }
+.bg-primary   { background: var(--color-primary); }
+.bg-secondary { background: var(--color-secondary); }
+.bg-bg        { background: var(--color-bg); }
+
+/* Image overlay for text contrast */
+.scrim-bottom { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 0%, rgba(10,10,10,0.85) 100%); }
+
+/* Vertical rule for asymmetric layouts (rotated kicker, side rail) */
+.rule-v       { width: 2px; background: var(--color-secondary); }
+.rule-h       { height: 2px; background: var(--color-secondary); }
+.divider-gold { width: 64px; height: 2px; background: var(--color-secondary); }
+
+/* Reusable atoms — visual only, not layout. */
+.cta-pill     { display: inline-block; padding: var(--sp-2) var(--sp-5); border-radius: var(--radius-pill); background: var(--color-secondary); color: var(--color-bg); font-weight: 700; font-family: var(--font-body); }
