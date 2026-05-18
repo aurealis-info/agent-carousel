@@ -1,4 +1,8 @@
-"""Designer phase — one Claude call per slide returning HTML body.
+"""Designer phase — HTML compiler from writer blueprint.
+
+Takes a slide blueprint (per-slide entry from the writer) and compiles HTML for
+that slide using the named layout move + the writer's palette.  No creative
+decisions are made here.
 
 Validates output against token validator; retries once with violations on rejection;
 falls back to safe-minimal layout after two failures.
@@ -48,88 +52,87 @@ def _safe_minimal_html(slide: SlideContent) -> str:
 
 
 def _build_prompt(
-    *, brand: dict, brand_css: str, pairing: dict, emphasis_font: Optional[dict],
-    slide: SlideContent, n_total: int, previous_html: Optional[str],
-    playbook_typography: str, playbook_layout: str,
+    *,
+    slide_blueprint: dict,
+    palette: dict,
+    pairing_id: str,
+    pairing_family_heading: str,
+    pairing_family_body: str,
+    n_total: int,
+    previous_html: Optional[str],
     retry_violations: Optional[str] = None,
 ) -> str:
-    emphasis_block = "(none — designer uses primary pairing only)"
-    if emphasis_font:
-        emphasis_block = (
-            f"borrowed from pairing '{emphasis_font['from_pairing']}'; "
-            f"family '{emphasis_font['family']}'; "
-            f"role: {emphasis_font['role']} (apply to hero word ONLY)"
-        )
+    palette_block = ", ".join(f"{k}={v}" for k, v in palette.items())
 
     sections = [
-        f"You are designing slide {slide.i} of {n_total} in an Instagram carousel (1080x1350 portrait).",
+        f"You are COMPILING slide {slide_blueprint['i']} of {n_total} into HTML.",
+        "You make NO creative decisions. The writer has already chosen the words, the hero word, the layout move, and the typographic treatment. Your job is to emit valid HTML that obeys the blueprint and uses only the brand's CSS variables (which are populated from the writer's invented palette).",
         "",
-        f"PRIMARY PAIRING: {pairing['id']}",
-        f"  heading family: {pairing['heading']['family']}",
-        f"  body family:    {pairing['body']['family']}",
-        f"  vibe: {pairing['vibe']}",
+        f"PAIRING: {pairing_id}",
+        f"  heading family: {pairing_family_heading}",
+        f"  body family:    {pairing_family_body}",
         "",
-        f"EMPHASIS FONT: {emphasis_block}",
+        "PALETTE (already wired to CSS variables by the orchestrator — use the CSS variables, not the hex literals):",
+        f"  {palette_block}",
+        "  CSS variables you may use: var(--color-bg), var(--color-text), var(--color-text-muted), var(--color-primary), var(--color-secondary), var(--color-accent).",
         "",
-        "BRAND CSS TOKENS (the only color, font, and size values you may use are these CSS variables):",
-        "```css",
-        brand_css,
-        "```",
+        "SLIDE BLUEPRINT (what the writer decided — render this exactly):",
+        f"  type:                {slide_blueprint['type']}",
+        f"  headline:            {slide_blueprint['headline']}",
+        f"  body:                {slide_blueprint.get('body', '')}",
+        f"  label:               {slide_blueprint.get('label')}",
+        f"  hero_word:           {slide_blueprint.get('hero_word')}",
+        f"  layout_move:         {slide_blueprint['layout_move']}",
+        f"  hero_word_treatment: {slide_blueprint.get('hero_word_treatment')}",
+        f"  color_role:          {slide_blueprint.get('color_role')}",
+        f"  inverted:            {slide_blueprint.get('inverted', False)}",
         "",
-        "SLIDE CONTENT:",
-        f"  type: {slide.type}",
-        f"  headline: {slide.headline}",
-        f"  body: {slide.body}",
-        f"  label: {slide.label}",
-        f"  composition template: {slide.composition}",
-        f"  density: {slide.density}",
-        f"  hero_word: {slide.hero_word}",
-        f"  color_inverted: {slide.color_inverted}",
-        "",
-        f"PREVIOUS SLIDE HTML (for visual continuity reference):",
+        "PREVIOUS SLIDE HTML (for visual continuity reference):",
         previous_html or "(this is the first slide; no previous HTML)",
-        "",
-        "TYPOGRAPHY PLAYBOOK:",
-        playbook_typography or "(none provided)",
-        "",
-        "LAYOUT PLAYBOOK:",
-        playbook_layout or "(none provided)",
         "",
         LAYOUT_MOVES_GUIDE,
         "",
         "REQUIREMENTS:",
         '- Output ONLY a JSON object: {"html": "<your html body string>"}',
-        "- Your HTML goes INSIDE a <div class=\"slide\"> wrapper that is already present; do not include the wrapper",
-        "- Use ONLY brand CSS variables for color, font-family, and font-size (no literals)",
-        "- Layout primitives (flex, grid, position, transform, inline SVG) are unrestricted",
-        "- Honor the composition template intent AND pick exactly ONE layout move from the guide above",
-        "- The hero_word, if provided, must receive a distinct typographic treatment — pick TWO of: italic, weight shift, family shift (.t-display-italic), color shift, size shift (e.g. .t-display vs surrounding .t-h1). Color-only is a flat default — combine with italic or weight to make it punch.",
-        "- Use the typographic role classes (.t-display, .t-stat, .t-pullquote, .t-eyebrow, .t-scripture-ref, .t-dropcap, .t-mega) over plain font-size literals — the role carries opsz, leading, tracking, and weight as one unit",
-        "- For Fraunces variable axes: the role classes already set font-variation-settings 'opsz'. Don't override unless the move requires a deliberate axis shift.",
-        "- Tracking utilities are available: .u-track-tight (-0.04em) for ALL CAPS display, .u-track-loose (.18em) for kickers, .u-track-wide (.32em) for scripture-ref / smallcaps, .u-tnum for tabular numerals.",
-        "- Text-safe zones: top 135px, sides 86px, bottom 270px",
+        '- Your HTML goes INSIDE a <div class="slide"> wrapper that is already present; do not include the wrapper.',
+        "- Use ONLY CSS variables for color and font-family. Never use raw hex literals.",
+        "- Use the typographic role classes (.t-display, .t-mega, .t-stat, .t-h1, .t-h2, .t-h3, .t-pullquote, .t-eyebrow, .t-scripture-ref, .t-dropcap, .t-body, .t-body-lg, .t-body-sm) and utilities (.u-track-tight, .u-track-loose, .u-track-wide, .u-italic, .u-caps, .u-lower, .u-tnum).",
+        "- The hero_word_treatment dict tells you exactly which shifts to apply to the hero word — apply them exactly.",
+        f"- Cite the layout move in a comment at the top: <!-- move: {slide_blueprint['layout_move']} -->",
+        "- Text-safe zones: top 135px, sides 86px, bottom 270px.",
         "- No background images. Solid brand-color backgrounds only.",
+        "",
     ]
     if retry_violations:
-        sections.append("")
         sections.append(retry_violations)
-    sections.append("")
+        sections.append("")
     sections.append("OUTPUT (JSON only, no preamble):")
     return "\n".join(sections)
 
 
-def generate_slide(
-    *, brand: dict, brand_css: str, pairing: dict, emphasis_font: Optional[dict],
-    slide: SlideContent, n_total: int, previous_html: Optional[str],
-    playbook_typography: str, playbook_layout: str,
+def compile_slide(
+    *,
+    slide_blueprint: dict,
+    palette: dict,
+    pairing_id: str,
+    pairing: dict,
+    n_total: int,
+    previous_html: Optional[str],
 ) -> DesignerResult:
+    """Compile one slide blueprint into HTML."""
+    from aurealis_carousel.token_validate import check
+
     retry_violations: Optional[str] = None
 
     for attempt in range(MAX_RETRIES + 1):
         prompt = _build_prompt(
-            brand=brand, brand_css=brand_css, pairing=pairing, emphasis_font=emphasis_font,
-            slide=slide, n_total=n_total, previous_html=previous_html,
-            playbook_typography=playbook_typography, playbook_layout=playbook_layout,
+            slide_blueprint=slide_blueprint,
+            palette=palette,
+            pairing_id=pairing_id,
+            pairing_family_heading=pairing["heading"]["family"],
+            pairing_family_body=pairing["body"]["family"],
+            n_total=n_total,
+            previous_html=previous_html,
             retry_violations=retry_violations,
         )
         response = query_json(prompt)
@@ -139,15 +142,21 @@ def generate_slide(
             retry_violations = (
                 "Previous attempt failed validation. Violations:\n"
                 "  - [missing-html] response did not include a non-empty 'html' field\n"
-                "Regenerate using only brand tokens (CSS variables) for color, "
-                "font-family, and font-size. Return JSON {\"html\": \"<your html>\"}."
+                "Regenerate using only CSS variables for color and font-family."
             )
             continue
 
-        result = check(last_html, brand)
+        result = check(last_html, palette)
         if result.ok:
             return DesignerResult(html=last_html, retries=attempt, fallback=False)
         retry_violations = result.format_for_retry()
 
-    fallback_html = _safe_minimal_html(slide)
-    return DesignerResult(html=fallback_html, retries=MAX_RETRIES + 1, fallback=True)
+    # Fallback — use SlideContent shape from blueprint for the safe minimal layout
+    fallback_slide = SlideContent(
+        i=slide_blueprint["i"], type=slide_blueprint["type"],
+        headline=slide_blueprint.get("headline", ""),
+        body=slide_blueprint.get("body", ""),
+        label=slide_blueprint.get("label"),
+    )
+    return DesignerResult(html=_safe_minimal_html(fallback_slide),
+                          retries=MAX_RETRIES + 1, fallback=True)
