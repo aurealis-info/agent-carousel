@@ -54,6 +54,9 @@ def _well_formed_critic():
             "narrative_arc_clarity": "PASS",
             "cta_bridge_effectiveness": "PASS",
             "type_pairing_appropriateness": "PASS",
+            "palette_appropriateness": "PASS",
+            "brand_recognizability": "PASS",
+            "creative_notes_honesty": "PASS",
         },
         "subtraction_test_findings": "All slides survive subtraction.",
         "peer_test_verdict": "PASS",
@@ -75,6 +78,8 @@ def test_critique_returns_well_formed_result(ethos_brand, slide_paths, strategis
             rendered_pngs=slide_paths,
             playbook_voice="", playbook_typography="",
             playbook_layout="", playbook_conversion="",
+            writer_creative_notes="Honest justification for choices.",
+            palette={"bg": "#000000", "text": "#FFFFFF", "text_muted": "#888888", "accent": "#FF0000"},
         )
     assert isinstance(r, CritiqueResult)
     assert r.must_revise_slides == []
@@ -98,6 +103,8 @@ def test_critique_returns_revise_for_problem_slide(ethos_brand, slide_paths, str
             rendered_pngs=slide_paths,
             playbook_voice="", playbook_typography="",
             playbook_layout="", playbook_conversion="",
+            writer_creative_notes="Honest justification for choices.",
+            palette={"bg": "#000000", "text": "#FFFFFF", "text_muted": "#888888", "accent": "#FF0000"},
         )
     assert r.must_revise_slides == [2]
     assert r.overall_recommendation == "REVISE"
@@ -115,6 +122,8 @@ def test_critique_prompt_lists_all_png_paths(ethos_brand, slide_paths, strategis
             rendered_pngs=slide_paths,
             playbook_voice="", playbook_typography="",
             playbook_layout="", playbook_conversion="",
+            writer_creative_notes="Honest justification for choices.",
+            palette={"bg": "#000000", "text": "#FFFFFF", "text_muted": "#888888", "accent": "#FF0000"},
         )
     prompt = captured[0][0]
     for p in slide_paths:
@@ -132,6 +141,8 @@ def test_critique_call_grants_read_tool(ethos_brand, slide_paths, strategist_spe
             rendered_pngs=slide_paths,
             playbook_voice="", playbook_typography="",
             playbook_layout="", playbook_conversion="",
+            writer_creative_notes="Honest justification for choices.",
+            palette={"bg": "#000000", "text": "#FFFFFF", "text_muted": "#888888", "accent": "#FF0000"},
         )
     kwargs = captured[0][1]
     assert "allowed_tools" in kwargs
@@ -149,6 +160,8 @@ def test_critique_prompt_carries_adversarial_framing(ethos_brand, slide_paths, s
             rendered_pngs=slide_paths,
             playbook_voice="", playbook_typography="",
             playbook_layout="", playbook_conversion="",
+            writer_creative_notes="Honest justification for choices.",
+            palette={"bg": "#000000", "text": "#FFFFFF", "text_muted": "#888888", "accent": "#FF0000"},
         )
     prompt = captured[0]
     # Adversarial cues must be present
@@ -169,7 +182,44 @@ def test_critique_passes_through_strategist_spec_to_prompt(ethos_brand, slide_pa
             rendered_pngs=slide_paths,
             playbook_voice="", playbook_typography="",
             playbook_layout="", playbook_conversion="",
+            writer_creative_notes="Honest justification for choices.",
+            palette={"bg": "#000000", "text": "#FFFFFF", "text_muted": "#888888", "accent": "#FF0000"},
         )
     prompt = captured[0]
     assert "test topic" in prompt or "PAS" in prompt
     assert "guide" in prompt or "recoleta-berthold" in prompt
+
+
+def test_critic_flags_dishonest_creative_notes():
+    from unittest.mock import patch
+    from aurealis_carousel import critique
+    mock_response = {
+        "carousel_assessment": {
+            "cohesion": "PASS",
+            "motif_consistency": "PASS",
+            "narrative_arc_clarity": "PASS",
+            "cta_bridge_effectiveness": "PASS",
+            "type_pairing_appropriateness": "PASS",
+            "palette_appropriateness": "PASS",
+            "brand_recognizability": "PASS",
+            "creative_notes_honesty": "REVISE",
+        },
+        "subtraction_test_findings": "...",
+        "peer_test_verdict": "PASS",
+        "algorithm_test_verdict": "PASS",
+        "per_slide": [],
+        "must_revise_slides": [1],
+        "overall_recommendation": "REVISE",
+    }
+    with patch("aurealis_carousel.critique.query_json", return_value=mock_response):
+        result = critique.critique_carousel(
+            brand={"brief": ""},
+            strategist_spec={},
+            rendered_pngs=[],
+            playbook_voice="", playbook_typography="",
+            playbook_layout="", playbook_conversion="",
+            writer_creative_notes="post-hoc fluff",
+            palette={"bg": "#000000", "text": "#FFFFFF", "text_muted": "#888888", "accent": "#FF0000"},
+        )
+    assert result.overall_recommendation == "REVISE"
+    assert 1 in result.must_revise_slides

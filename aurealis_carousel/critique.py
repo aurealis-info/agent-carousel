@@ -29,8 +29,12 @@ def _build_prompt(
     *, brand: dict, strategist_spec: dict, rendered_pngs: list[Path],
     playbook_voice: str, playbook_typography: str,
     playbook_layout: str, playbook_conversion: str,
+    writer_creative_notes: str = "",
+    palette: dict | None = None,
 ) -> str:
     png_lines = "\n".join(f"  - {str(p)}" for p in rendered_pngs)
+    if palette is None:
+        palette = {}
 
     return f"""\
 You are a senior creative director who has rejected 80% of what crosses your desk this year. AI-generated carousels are flooding the feed; only the truly distinctive get a save. Your reputation depends on never approving mediocrity.
@@ -69,6 +73,17 @@ LAYOUT PLAYBOOK:
 CONVERSION PLAYBOOK:
 {playbook_conversion or '(none provided)'}
 
+WRITER'S CREATIVE NOTES (the writer's own justification for the pairing + palette + per-slide moves — judge whether this reads as honest or as backfilled rationalization):
+{writer_creative_notes or '(none provided)'}
+
+WRITER-INVENTED PALETTE (judge whether these colors serve the topic and read as on-brand):
+{yaml.safe_dump(palette, sort_keys=False)}
+
+Three additional axes were added for this iteration:
+- palette_appropriateness: does the writer-invented palette serve the topic + brand's visual register?
+- brand_recognizability: does this carousel look like it came from this brand?
+- creative_notes_honesty: does the writer's creative_notes block honestly justify the choices made, or read as backfilled rationalization?
+
 OUTPUT (JSON only, no preamble):
 {{
   "carousel_assessment": {{
@@ -76,7 +91,10 @@ OUTPUT (JSON only, no preamble):
     "motif_consistency": "PASS|REVISE",
     "narrative_arc_clarity": "PASS|REVISE",
     "cta_bridge_effectiveness": "PASS|REVISE",
-    "type_pairing_appropriateness": "PASS|REVISE"
+    "type_pairing_appropriateness": "PASS|REVISE",
+    "palette_appropriateness": "PASS|REVISE",
+    "brand_recognizability": "PASS|REVISE",
+    "creative_notes_honesty": "PASS|REVISE"
   }},
   "subtraction_test_findings": "Which slides have padded copy that could survive deflation",
   "peer_test_verdict": "PASS|REVISE",
@@ -105,11 +123,15 @@ def critique_carousel(
     *, brand: dict, strategist_spec: dict, rendered_pngs: list[Path],
     playbook_voice: str, playbook_typography: str,
     playbook_layout: str, playbook_conversion: str,
+    writer_creative_notes: str = "",
+    palette: dict | None = None,
 ) -> CritiqueResult:
     prompt = _build_prompt(
         brand=brand, strategist_spec=strategist_spec, rendered_pngs=rendered_pngs,
         playbook_voice=playbook_voice, playbook_typography=playbook_typography,
         playbook_layout=playbook_layout, playbook_conversion=playbook_conversion,
+        writer_creative_notes=writer_creative_notes,
+        palette=palette,
     )
     # Each PNG requires a Read tool call; allow generous headroom so the model
     # can Read every slide (one tool call per slide) plus reason and emit JSON.
