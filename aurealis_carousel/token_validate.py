@@ -42,8 +42,17 @@ class ValidationResult:
         return "\n".join(lines)
 
 
-def _approved_palette(brand: dict) -> set[str]:
-    return {v.lower() for v in brand["design"]["colors"].values()}
+def _approved_palette(palette: dict) -> set[str]:
+    """Build the allowlist of hex literals from a writer-supplied palette.
+
+    palette is the per-carousel palette dict from the writer: keys bg, text,
+    text_muted, accent, optional accent_alt.
+    """
+    keys = ("bg", "text", "text_muted", "accent")
+    values = [palette[k].lower() for k in keys if k in palette]
+    if "accent_alt" in palette:
+        values.append(palette["accent_alt"].lower())
+    return set(values)
 
 
 def _approved_size_tokens() -> set[str]:
@@ -158,8 +167,8 @@ def _scan_style_block(css_text, palette, sizes):
     return violations
 
 
-def check(html_body: str, brand: dict, allowed_bg_path: Optional[str] = None) -> ValidationResult:
-    palette = _approved_palette(brand)
+def check(html_body: str, palette: dict, allowed_bg_path: Optional[str] = None) -> ValidationResult:
+    palette_set = _approved_palette(palette)
     sizes = _approved_size_tokens()
     soup = BeautifulSoup(html_body, "html.parser")
     violations: list[Violation] = []
@@ -196,10 +205,10 @@ def check(html_body: str, brand: dict, allowed_bg_path: Optional[str] = None) ->
 
     for tag in soup.find_all(style=True):
         decls = _split_decls(tag["style"])
-        violations.extend(_scan_declarations(decls, palette, sizes, str(tag)[:80]))
+        violations.extend(_scan_declarations(decls, palette_set, sizes, str(tag)[:80]))
 
     for style_tag in soup.find_all("style"):
         css_text = style_tag.string or ""
-        violations.extend(_scan_style_block(css_text, palette, sizes))
+        violations.extend(_scan_style_block(css_text, palette_set, sizes))
 
     return ValidationResult(ok=(len(violations) == 0), violations=violations)
