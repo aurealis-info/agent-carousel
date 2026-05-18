@@ -1,52 +1,31 @@
 brand_name: "_test"
+app_name: "TestApp"
 
-app:
-  name: "TestApp"
-  one_line: "A neutral test app for live carousel rendering."
-  store_url: "https://example.com/download"
-  cta_bridge_phrase: "Stop overthinking. Decide in 60 seconds."
+brief: |
+  TestApp is a neutral utility for decisive professionals. Reader psychology:
+  they want clarity, not options. They're done with overthinking and want to
+  decide quickly. They distrust hype and reward direct, unembellished writing.
 
-icp:
-  audience: "decisive professionals"
-  jtbd: "Decide quickly without overthinking"
-  fears:
-    - "wasting time on non-decisions"
-    - "analysis paralysis"
-  internal_monologue:
-    - "I want clarity, not options"
+  Voice: expert and calm. No fluff. Treat the reader as smart. Imperative
+  verbs over hedging. Concrete examples over abstractions. Never use
+  motivational-poster language ("you've got this," "level up,"
+  "game-changer"). Never use synthetic intimacy ("hey friend," "between us").
+  Never use hustle-coded language.
 
-voice:
-  principles:
-    - "Direct, calm, no fluff"
-    - "Treat the reader as smart"
-  banned_words: []   # _test brand has no hard-rejects (deliberately wide-open for live test)
-  voice_mode:
-    default: expert
+  Lines the brand never crosses: never promise outcomes; never invoke fear of
+  missing out; never use shame as a motivator.
 
-publishing_mode: testing
+  Visual register: crisp editorial. High-contrast black on white, with a
+  single muted accent color per carousel. Minimal, restrained, modernist.
+  Sans-serif default with serif accents for emphasis only. Never neon, never
+  pastel, never playful scripts. The visual mood is "thoughtful productivity
+  tool, not lifestyle brand."
 
-design:
-  colors:
-    primary: "#1a1a1a"
-    secondary: "#2563eb"
-    accent: "#f59e0b"
-    background: "#ffffff"
-    text: "#1a1a1a"
-    text_muted: "#6b7280"
-  fonts:
-    heading: "Inter"
-    body: "Inter"
-  visual_mood: "Crisp editorial. Black on white. Single accent color."
+  CTA bridge: TestApp helps you stop overthinking and decide in 60 seconds.
 
-narrative:
-  slide_count: { min: 3, max: 5, sweet_spot: 4 }
-  variety_rules: []
+  Carousel norms: 3-5 slides per carousel. Hashtags 8-12 total, mixing broad
+  productivity tags with niche decision-science tags. Rotate frames and
+  voice modes across recent carousels.
 
-product:
-  hashtags:
-    medium_density: ["#test1", "#test2", "#test3", "#test4"]
-    niche: ["#test5", "#test6", "#test7", "#test8"]
-    avoid: []
-    stack_rule: "8-12 total"
-
-brand_lines_in_sand: []
+slide_count_range: [3, 5]
+hashtag_count_range: [8, 12]
