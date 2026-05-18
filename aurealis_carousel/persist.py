@@ -32,10 +32,34 @@ class PersistInputs:
     history_path: Path
     repo_root: Path
     auto_commit: bool = False
+    slide_types: list[str] = None       # per-slide type strings, used to find climax
+    visual_refs_root: Optional[Path] = None  # history/<brand>/visual_refs/ (orchestrator builds it)
 
 
 def _today():
     return dt.date.today().isoformat()
+
+
+def _save_visual_refs(inputs: PersistInputs) -> None:
+    if not inputs.visual_refs_root or not inputs.slide_types:
+        return
+    ref_dir = inputs.visual_refs_root / inputs.topic_slug
+    ref_dir.mkdir(parents=True, exist_ok=True)
+
+    # hook = slide 0
+    if inputs.slide_paths:
+        hook_dest = ref_dir / inputs.slide_paths[0].name
+        hook_dest.write_bytes(inputs.slide_paths[0].read_bytes())
+
+    # climax = first slide whose type == "climax"
+    try:
+        climax_idx = next(i for i, t in enumerate(inputs.slide_types) if t == "climax")
+        climax_src = inputs.slide_paths[climax_idx]
+        climax_dest = ref_dir / climax_src.name
+        climax_dest.write_bytes(climax_src.read_bytes())
+    except (StopIteration, IndexError):
+        # no climax tagged or out of range; skip — not fatal
+        pass
 
 
 def finalize(inputs: PersistInputs) -> None:
@@ -78,6 +102,8 @@ def finalize(inputs: PersistInputs) -> None:
                         "reach": None, "rating": "pending"},
     })
     inputs.history_path.write_text(yaml.safe_dump(history, sort_keys=False))
+
+    _save_visual_refs(inputs)
 
     if inputs.auto_commit:
         repo = str(inputs.repo_root)
