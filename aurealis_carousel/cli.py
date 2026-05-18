@@ -21,13 +21,23 @@ def _list_brands() -> list[str]:
 
 
 def cmd_generate(args) -> int:
-    paths = run(
-        brand_name=args.brand,
-        user_topic_hint=args.topic,
-        output_root=Path(args.output_root) if args.output_root else None,
-        history_path=Path(args.history_path) if args.history_path else None,
-        auto_commit=args.auto_commit,
-    )
+    if args.v2:
+        from aurealis_carousel.orchestrator_v2 import run as run_v2
+        paths = run_v2(
+            brand_name=args.brand,
+            user_topic_hint=args.topic,
+            output_root=Path(args.output_root) if args.output_root else None,
+            history_path=Path(args.history_path) if args.history_path else None,
+            auto_commit=args.auto_commit,
+        )
+    else:
+        paths = run(
+            brand_name=args.brand,
+            user_topic_hint=args.topic,
+            output_root=Path(args.output_root) if args.output_root else None,
+            history_path=Path(args.history_path) if args.history_path else None,
+            auto_commit=args.auto_commit,
+        )
     print(f"Generated {len(paths)} slides:")
     for p in paths:
         print(f"  {p}")
@@ -105,6 +115,8 @@ def build_parser() -> argparse.ArgumentParser:
                      help="Skip render/persist; print plan only")
     gen.add_argument("--output-root", help="Override outputs/ destination", default=None)
     gen.add_argument("--history-path", help="Override history file", default=None)
+    gen.add_argument("--v2", action="store_true",
+                     help="Use the content-driven pipeline (orchestrator_v2). Default uses legacy.")
     gen.set_defaults(func=cmd_generate)
 
     lb = sub.add_parser("list-brands", help="List all configured brands")
