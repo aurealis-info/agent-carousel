@@ -1,192 +1,65 @@
-brand_name: "ETHOS"
+brand_name: ETHOS
+app_name: ETHOS
 
-app:
-  name: "ETHOS"
-  one_line: "Daily discipleship for young Christian men 18-25."
-  store_url: "https://ethos.app/download"
-  cta_bridge_phrase: "ETHOS builds that man one morning at a time. One verse, one identity anchor, one rep — matched to where you actually are."
+brief: |
+  ETHOS is an iOS app for young Christian men 18-25 caught between two
+  failure modes of modern manhood — feral (Tate-coded, appetitive,
+  rage-bait) and domesticated (porn-fed, soft, performative, no spine).
+  They want a third thing: the governed man. ETHOS is the daily
+  discipleship practice that builds him — one verse, one identity anchor,
+  one rep per morning, matched to where the reader actually is.
 
-icp:
-  audience: "young Christian men 18-25 caught between feral (Tate-coded) and domesticated (porn-fed soft) versions of manhood — and called to a third: the governed man."
-  jtbd: "Become the man God designed — long before any conversation, opportunity, or test forces it"
-  fears:
-    - "drifting back to old patterns"
-    - "performing faith without depth"
-    - "still being a boy when the world expects a man"
-    - "ending up alone, or worse — with someone who saw through him"
-    - "getting pulled into the feral frame (Tate-coded, appetitive, rage-bait)"
-    - "settling into the domesticated frame (porn-fed, soft, performative, no spine)"
-  internal_monologue:
-    - "I want to be the kind of man my future children will respect"
-    - "I'm tired of streaks I cannot keep"
-    - "I'm done auditioning — I want to actually be him"
-    - "She can tell. They all can tell."
-    - "I don't want to be Tate. I don't want to be soft either. There has to be a third thing."
+  Reader psychology: they want to be the kind of man their future children
+  will respect. They're tired of streaks they cannot keep. They're done
+  auditioning and want to actually be him. They worry "she can tell, they
+  all can tell." They want a path that's neither Tate nor soft.
 
-voice:
-  # Codified attributes (from marketing/documentation/05-messaging-and-voice.md):
-  # Direct, Grounded, Masculine, Honest. Older brother across the table at 10pm —
-  # not a parent, not a cheerleader, not a TED talk.
-  attributes:
-    - direct       # Names the thing. No throat-clearing, no padding.
-    - grounded     # Scripture is the floor, not a flourish. Cite when it cuts.
-    - masculine    # Imperative verbs, spatial metaphors, building/protecting/conquest. Not crude.
-    - honest       # Names what's actually killing this generation. Doesn't flatter.
-  principles:
-    - "Older brother, not parent. Brotherly directness, not lecture."
-    - "Lead with declarative truth. The reader earns the conclusion."
-    - "Scripture is the weapon, not the decoration. Quote it when it cuts."
-    - "Identity language over behavior language: 'become him' beats 'do this'."
-    - "Apex, not alpha. Governed > dominant. Sacrificial leadership > performative dominance."
-    - "Strong AND tender — in the right places. Ruthless with self, gentle with others."
+  Voice: older brother across the table at 10pm — not a parent, not a
+  cheerleader, not a TED talk. Direct, grounded, masculine, honest.
+  Imperative verbs. Spatial and building metaphors. Scripture as weapon,
+  not decoration — cite when it cuts. Identity language over behavior
+  language ("become him" beats "do this"). Apex, not alpha. Ruthless with
+  self, gentle with others.
 
-  # Brand-specific hard-reject words/phrases — ETHOS-specific list (NOT universal infrastructure).
-  # Mechanical regex check at strategist + critic stages.
-  banned_words:
-    # Pseudo-spiritual leverage / prosperity gospel
-    - manifest
-    - "the universe rewards"
-    - blessed
-    - "blessed and highly favored"
-    - abundance
-    - "divine alignment"
-    # Synthetic intimacy / influencer-speak
-    - bestie
-    - "dive in"
-    - "game-changer"
-    - "level up"
-    - bossbabe
-    # Hustle-bro / grindset Christianity
-    # NOTE: "grind" as standalone is banned ONLY when it frames itself as the path to manhood
-    # or the cure. Inside "The Grind" content pillar (paired with Scripture / faithfulness),
-    # the word can appear — judge by intent, not literal match.
-    - "rise and grind"
-    - "no days off"
-    - "5 AM club"
-    # Therapy-speak diluting hard truth
-    - "hold space"
-    - alignment
-    - "be gentle with yourself"
-    - "do the work"
-    - "your journey"
-    - "lean into"
-    # Tate-coded / feral frame
-    - alpha
-    - "high-value man"
-    - king
-    - "she belongs to her king"
-    # Domesticated / church-camp clichés
-    - "brother in Christ"
-    - "do life together"
-    - "let go and let God"
-    - "I'm just a sinner saved by grace"
-    # Polished sentiment / Pinterest aesthetic copy
-    - "you are enough"
-    - "today's gentle reminder"
-    - "God has a plan"
-    # Performance manhood
-    - "become impressive"
-    # Easy answers
-    - "trust God and it'll work out"
+  Voice to never fall into: pseudo-spiritual leverage (the universe
+  rewards, blessed, manifest, divine alignment). Synthetic intimacy
+  (bestie, let's dive in). Empty influencer-speak (level up, game-changer).
+  Hustle-grindset Christianity (rise and grind, 5 AM club). Therapy-jargon-
+  as-truth (hold space, lean into, your journey). Tate-coded language
+  (alpha, high-value man, king). Domesticated church-camp (brother in
+  Christ, let go and let God). Pinterest-Christian sentiment (you are
+  enough, God has a plan). Prosperity easy-answers (trust God and it'll
+  work out).
 
-  voice_mode:
-    default: guide
+  Lines the brand never crosses: prosperity-gospel framing; shame as
+  motivator; favorable comparison to other Christian apps; any single
+  creator framed as the brand identity; accidentally recruiting the feral
+  or domesticated audience (the faith signal must be legible in the hook);
+  Pinterest-Christian aesthetic.
 
-# type_pairings field is optional. ETHOS sets a default anchor; all 6 library
-# pairings remain available for the strategist to pick from per topic.
-type_pairings:
-  default: recoleta-berthold
+  Visual register: obsidian + warm gold. Editorial, cinematic — like a
+  feature in a print magazine for men, not a content library to browse.
+  Dark backgrounds, restrained palettes, high contrast. Serifs lead;
+  condensed sans support. Never pastels, never neon, never playful scripts.
+  One accent per carousel; never two competing accents. A weapon picked up
+  for the day.
 
-publishing_mode: testing
+  CTA bridge: "ETHOS builds that man one morning at a time. One verse, one
+  identity anchor, one rep — matched to where you actually are." The app's
+  surfaces the carousel can close on include Daily Anchor (verse +
+  reflection + prayer — the primary close), AI Companion (chat that won't
+  lie about Scripture), Streaks (consistency), 12-Tag Check-In (daily
+  growth input), Weekly Snapshot (12-axis reflection), Radar Chart (premium
+  growth viz), Onboarding Identity Anchors, Saved Verses.
 
-design:
-  colors:
-    primary: "#A67C2E"
-    secondary: "#C8973E"
-    accent: "#C4501A"
-    background: "#0A0A0A"
-    text: "#F0E6D6"
-    text_muted: "#6B6B6B"
-  fonts:
-    heading: "Recoleta"
-    body: "Recoleta"
-  visual_mood: "Obsidian and gold. Warm metallic gold catching candlelight on ink-black. Editorial / cinematic. A weapon picked up for the day, not a content library browsed."
+  Carousel norms: 5-slide chassis is standard, up to 6 when a topic earns
+  it. Hashtags 8-12, mixing broad faith tags with niche
+  biblical-masculinity tags, avoiding prosperity / hustle / Tate-coded
+  tags. Rotate voice modes and format archetypes across recent carousels
+  rather than repeating.
 
-narrative:
-  # ETHOS uses the 5-slide chassis as the standard (per marketing/guidelines/CAROUSEL/guidelines.md).
-  # Allow up to 6 for topics that genuinely need one extra value slide; anything longer is two carousels.
-  slide_count: { min: 5, max: 6, sweet_spot: 5 }
-  variety_rules:
-    - "no repeat voice_mode in last 3 carousels"
-    - "no repeat format archetype in last 3 carousels (rotate Listicle / Mistakes / Uncomfortable Questions / Problem-Solution / Cultural Lens)"
-    - "no repeat content pillar in last 2 carousels (rotate Scripture Applied / The Grind / Real Talk / The Vision)"
-
-product:
-  hashtags:
-    medium_density:
-      - "#christiantiktok"
-      - "#christianmen"
-      - "#faith"
-      - "#jesus"
-      - "#bible"
-      - "#dailyverse"
-      - "#christianlife"
-      - "#discipleship"
-      - "#manhood"
-      - "#fyp"
-    niche:
-      - "#biblicalmasculinity"
-      - "#youngchristian"
-      - "#christianidentity"
-      - "#mensministry"
-      - "#bibledaily"
-      - "#wisdom"
-      - "#integrity"
-      - "#character"
-      - "#habits"
-      - "#morningrituals"
-    avoid:
-      - "#blessed"
-      - "#prosperity"
-      - "#manifest"
-      - "#alpha"
-      - "#sigma"
-      - "#hustleculture"
-      - "#kingmindset"
-    stack_rule: "8-12 total: 2 broad / 4 niche / 3 audience-or-pillar / 2 branded"
-
-brand_lines_in_sand:
-  - "never use prosperity-gospel framing"
-  - "never invoke shame as motivator"
-  - "never compare brand favorably to other Christian apps"
-  - "never frame Imman.faith (or any single creator) as the brand identity — the app is the star"
-  - "never recruit the feral or domesticated audiences accidentally; faith signal in the hook is mandatory"
-  - "never use Pinterest-Christian aesthetic — coffee+Bible flatlays, candlelit pages, soft pastel devotional. Wrong audience signal."
-
-# Substantive content direction lives in the marketing/ folder — single source of
-# truth. The strategist reads each file at runtime and injects it verbatim into
-# its prompt as BRAND CONTENT GUIDELINES. Update marketing/* and the carousel
-# system picks up the change on the next run.
-#
-# Order matters: GENERAL_CONTENT_GUIDELINES is the substantive layer (themes,
-# voice, audience, anti-patterns); CAROUSEL/guidelines.md is the format-specific
-# execution layer (chassis, hook engineering, copy psychology, archetypes,
-# bridge, success metrics).
+slide_count_range: [5, 6]
+hashtag_count_range: [8, 12]
 content_guidelines_files:
   - marketing/guidelines/GENERAL_CONTENT_GUIDELINES
   - marketing/guidelines/CAROUSEL/guidelines.md
-
-# ETHOS-specific implementation detail NOT in the marketing/ docs: the in-app
-# surface taxonomy slide-4 must name and slide-5 must repeat. Lives here because
-# it changes when the app changes, not when the brand voice changes.
-app_surfaces:
-  primary: "Daily Anchor"   # most carousels close here (verse + reflection + prayer)
-  available:
-    - "Daily Anchor"
-    - "AI Companion"          # chat that won't lie about what Scripture says
-    - "Streaks"               # consistency tracking
-    - "12-Tag Check-In"       # daily input for the radar
-    - "Weekly Snapshot"       # growth reflection across 12 axes
-    - "Radar Chart"           # premium growth visualization
-    - "Onboarding Identity Anchors"
-    - "Saved Verses"
