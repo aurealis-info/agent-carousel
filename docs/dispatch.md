@@ -59,8 +59,8 @@ The Claude Routine does **not** generate PNGs or talk to Cloudflare R2 directly.
 
 Instead:
 1. The Routine pushes the generated HTML/CSS/JSON files to `main`.
-2. The **GitLab CI/CD Pipeline** (`.gitlab-ci.yml`) is triggered on the push.
-3. The pipeline spins up a Playwright-equipped runner (`mcr.microsoft.com/playwright`).
+2. The **GitHub Actions Workflow** (`.github/workflows/render-carousels.yml`) is triggered on the push.
+3. The runner spins up a virtual machine, installs node and playwright dependencies.
 4. It runs `npm run render` (executing `scripts/render.js`), which:
    - Automatically detects the newly added/modified folders under `carousels/`.
    - Screenshots each slide to a `1080x1350` PNG.
