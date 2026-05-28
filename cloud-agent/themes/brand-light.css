@@ -1,0 +1,17 @@
+/* ETHOS — brand-light.css — tokens only.
+   Visual layout lives in template.css. Never hardcode hex in a slide. */
+
+:root {
+  /* Palette — five colors */
+  --c-bg:          #F2EAD9;   /* creme */
+  --c-fg:          #000000;
+  --c-accent:      #D4B668;   /* decoration: same gold both colorways */
+  --c-accent-text: #000000;   /* readable accents flip to black on light */
+  --c-on-accent:   #000000;
+  --c-muted:       #262626;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', 'Iowan Old Style', Georgia, serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Anton', 'Inter', sans-serif;
+}

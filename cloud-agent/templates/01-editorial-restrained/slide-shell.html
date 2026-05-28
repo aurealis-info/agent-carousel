@@ -1,0 +1,13 @@
+<!--
+  OBSOLETE — DO NOT USE.
+
+  This file existed when the renderer wrapped a bare .slide body in an
+  engine-injected HTML shell. The current system has no engine: each slide
+  is a complete standalone HTML document (see DESIGN.md "How a slide
+  becomes a file" + INSTRUCTIONS.md step 3). The frame contract (1080×1350
+  canvas, .slide padding, body surround) now lives in template.css.
+
+  Kept only to avoid breaking any old toolchains that still reference the
+  path. If you're authoring a new slide, write a full HTML file per the
+  example in DESIGN.md — do not start from this shell.
+-->

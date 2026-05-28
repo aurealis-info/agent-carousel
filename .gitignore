@@ -1,23 +1,15 @@
-__pycache__/
-*.py[cod]
-.venv/
-.pytest_cache/
-.coverage
-.DS_Store
-*.egg-info/
-build/
+# Dependencies
+node_modules/
+
+# Local build / rendering outputs
 dist/
 
-outputs/_local/
-outputs/**/_debug/
-
-.env
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 *.log
 
-# marketing/ — only text guidelines + documentation are versioned.
-# Heavy reference material (PDFs, screenshots, mockups) stays local.
-marketing/APPDESIGN/
-marketing/ASSETS/
-marketing/ONBOARDING/
-marketing/Inspiration_Reels/
-marketing/aurealis_marketing_skills_simon/
+# System files
+.DS_Store
+Thumbs.db
