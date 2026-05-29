@@ -8,6 +8,9 @@ const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
 const DEFAULT_WIDTH = 1080;
 const DEFAULT_HEIGHT = 1350;
 const OUTPUT_DIR = path.join(__dirname, '../dist');
+// JPEG quality: Instagram Content Publishing API requires JPEG; 92 is visually
+// indistinguishable from PNG for text-on-solid-background carousels.
+const JPEG_QUALITY = 92;
 
 // Parse CLI Arguments
 const args = process.argv.slice(2);
@@ -174,9 +177,9 @@ async function renderCarousel(browser, folderPath) {
 
     // Define output path
     const carouselId = path.basename(absoluteFolder);
-    const outputFilename = `${path.basename(slideFile, '.html')}.png`;
+    const outputFilename = `${path.basename(slideFile, '.html')}.jpg`;
     const localOutputDir = path.join(OUTPUT_DIR, carouselId);
-    
+
     if (!fs.existsSync(localOutputDir)) {
       fs.mkdirSync(localOutputDir, { recursive: true });
     }
@@ -184,7 +187,8 @@ async function renderCarousel(browser, folderPath) {
     const localImagePath = path.join(localOutputDir, outputFilename);
     await page.screenshot({
       path: localImagePath,
-      type: 'png',
+      type: 'jpeg',
+      quality: JPEG_QUALITY,
       omitBackground: false
     });
 
@@ -248,7 +252,7 @@ async function uploadToCloud(carouselData) {
       Bucket: bucketName,
       Key: img.bucketKey,
       Body: fileContent,
-      ContentType: 'image/png'
+      ContentType: 'image/jpeg'
     }));
   }
 
