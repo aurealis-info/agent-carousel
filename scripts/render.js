@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { execSync } = require('child_process');
 const { chromium } = require('playwright');
 const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
@@ -272,6 +273,84 @@ async function uploadToCloud(carouselData) {
 }
 
 /**
+ * Derive the brand from the carousel folder path or metadata.
+ * For now defaults to 'ethos'; refine when more brands are added.
+ */
+function deriveBrand(metadata) {
+  if (metadata && typeof metadata.brand === 'string' && metadata.brand.length > 0) return metadata.brand;
+  return 'ethos';
+}
+
+/**
+ * Notify the aurealis-dashboard that a new carousel has been rendered + uploaded.
+ * Inserts a draft row in the dashboard's Supabase via the HMAC-signed webhook.
+ *
+ * Required env: DASHBOARD_WEBHOOK_URL, RENDER_WEBHOOK_SECRET.
+ * R2_PUBLIC_BASE_URL optional (defaults to known public bucket URL).
+ *
+ * Non-fatal: if env is missing or the call fails, logs and returns — the
+ * carousel itself was still uploaded successfully.
+ */
+async function notifyDashboard(carouselData) {
+  const webhookUrl = process.env.DASHBOARD_WEBHOOK_URL;
+  const secret = process.env.RENDER_WEBHOOK_SECRET;
+
+  if (!webhookUrl || !secret) {
+    console.warn(`  [notify] Skipped — DASHBOARD_WEBHOOK_URL or RENDER_WEBHOOK_SECRET not set.`);
+    return;
+  }
+
+  const r2Base = process.env.R2_PUBLIC_BASE_URL
+    || 'https://pub-ec22e204c2504445940f90781c105451.r2.dev';
+  const { carouselId, folderPath, metadata, images } = carouselData;
+
+  const slideUrls = images.map((img) => `${r2Base}/${img.bucketKey}`);
+  const payload = {
+    slug: metadata.slug || carouselId,
+    brand: deriveBrand(metadata),
+    title: metadata.title || carouselId,
+    caption: metadata.caption || '',
+    hashtags: Array.isArray(metadata.tags) ? metadata.tags : [],
+    pillar: metadata.pillar || null,
+    themes: Array.isArray(metadata.themes) ? metadata.themes : null,
+    title_shape: metadata.title_shape || metadata.titleShape || null,
+    archetype: metadata.archetype || null,
+    hook_form: metadata.hook_form || metadata.hookForm || null,
+    slide_count: images.length,
+    slide_image_urls: slideUrls,
+    cover_image_url: slideUrls[0],
+    metadata_url: `${r2Base}/${folderPath}/metadata.json`,
+    source_commit: process.env.GITHUB_SHA || process.env.CI_COMMIT_SHA || null,
+    source_pr_url: process.env.GITHUB_PR_URL || null,
+  };
+
+  const body = JSON.stringify(payload);
+  const timestamp = Math.floor(Date.now() / 1000).toString();
+  const signature = crypto.createHmac('sha256', secret).update(`${timestamp}.${body}`).digest('hex');
+
+  console.log(`  [notify] POSTing to ${webhookUrl} (slug=${payload.slug})`);
+  try {
+    const res = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Aurealis-Timestamp': timestamp,
+        'X-Aurealis-Signature': `sha256=${signature}`,
+      },
+      body,
+    });
+    const text = await res.text();
+    if (!res.ok) {
+      console.error(`  [notify] FAILED ${res.status}: ${text}`);
+      return;
+    }
+    console.log(`  [notify] OK: ${text}`);
+  } catch (e) {
+    console.error(`  [notify] Network error:`, e.message);
+  }
+}
+
+/**
  * Main execution flow
  */
 async function main() {
@@ -311,6 +390,7 @@ async function main() {
     for (const carouselData of results) {
       try {
         await uploadToCloud(carouselData);
+        await notifyDashboard(carouselData);
       } catch (err) {
         console.error(`Failed to upload carousel ${carouselData.carouselId}:`, err);
         process.exit(1);

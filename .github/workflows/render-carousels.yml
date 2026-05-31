@@ -32,8 +32,11 @@ jobs:
         env:
           CI_COMMIT_BEFORE_SHA: ${{ github.event.before || github.event.pull_request.base.sha }}
           CI_COMMIT_SHA: ${{ github.sha || github.event.pull_request.head.sha }}
+          GITHUB_SHA: ${{ github.sha }}
           CF_R2_ENDPOINT: ${{ secrets.CF_R2_ENDPOINT }}
           CF_R2_ACCESS_KEY_ID: ${{ secrets.CF_R2_ACCESS_KEY_ID }}
           CF_R2_SECRET_ACCESS_KEY: ${{ secrets.CF_R2_SECRET_ACCESS_KEY }}
           CF_R2_BUCKET_NAME: ${{ secrets.CF_R2_BUCKET_NAME }}
+          DASHBOARD_WEBHOOK_URL: ${{ secrets.DASHBOARD_WEBHOOK_URL }}
+          RENDER_WEBHOOK_SECRET: ${{ secrets.RENDER_WEBHOOK_SECRET }}
         run: npm run render
