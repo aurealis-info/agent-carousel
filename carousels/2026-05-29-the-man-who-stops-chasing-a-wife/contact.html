@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ETHOS — Review: The Man Who Stops Chasing a Wife</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px;
+      background: #111;
+      font-family: -apple-system, sans-serif;
+      color: #ccc;
+    }
+    h1 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 8px 0;
+      color: #fff;
+    }
+    p { font-size: 13px; margin: 0 0 24px 0; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .cell {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .cell span {
+      font-size: 11px;
+      color: #888;
+      text-align: center;
+    }
+    iframe {
+      width: 100%;
+      aspect-ratio: 1080 / 1350;
+      border: none;
+      border-radius: 4px;
+      transform-origin: top left;
+      pointer-events: none;
+    }
+    .iframe-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1080 / 1350;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+    .iframe-wrap iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1080px;
+      height: 1350px;
+      transform-origin: top left;
+    }
+  </style>
+</head>
+<body>
+  <h1>Review — The Man Who Stops Chasing a Wife</h1>
+  <p>2026-05-29 · Light colorway · 7 slides · Pillar: The Vision · Theme: He chases God, not a wife.</p>
+  <div class="grid" id="grid"></div>
+  <script>
+    const slides = [
+      'slide-01.html', 'slide-02.html', 'slide-03.html', 'slide-04.html',
+      'slide-05.html', 'slide-06.html', 'slide-07.html'
+    ];
+    const labels = ['Hook', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'CTA'];
+    const grid = document.getElementById('grid');
+    const scale = 1 / (1080 / (window.innerWidth / 4 - 24));
+
+    slides.forEach((src, i) => {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      const wrap = document.createElement('div');
+      wrap.className = 'iframe-wrap';
+      const iframe = document.createElement('iframe');
+      iframe.src = src;
+      const cellW = (window.innerWidth - 64 - 48) / 4;
+      const s = cellW / 1080;
+      iframe.style.transform = `scale(${s})`;
+      wrap.appendChild(iframe);
+      const label = document.createElement('span');
+      label.textContent = `${String(i + 1).padStart(2, '0')} / 07 — ${labels[i]}`;
+      cell.appendChild(wrap);
+      cell.appendChild(label);
+      grid.appendChild(cell);
+    });
+  </script>
+</body>
+</html>
