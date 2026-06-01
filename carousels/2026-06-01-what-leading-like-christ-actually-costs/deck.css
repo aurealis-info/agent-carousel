@@ -1,12 +1,12 @@
-/* ETHOS — brand-dark.css — tokens only.
+/* ETHOS — brand-light.css — tokens only.
    Visual layout lives in template.css. Never hardcode hex in a slide. */
 
 :root {
   /* Palette — five colors */
-  --c-bg:          #000000;
-  --c-fg:          #FFFFFF;
-  --c-accent:      #D4B668;   /* decoration: rules, dividers, arrow */
-  --c-accent-text: #D4B668;   /* readable accents (gold on dark) */
+  --c-bg:          #F2EAD9;   /* creme */
+  --c-fg:          #000000;
+  --c-accent:      #D4B668;   /* decoration: same gold both colorways */
+  --c-accent-text: #000000;   /* readable accents flip to black on light */
   --c-on-accent:   #000000;
   --c-muted:       #262626;
 
@@ -234,4 +234,3 @@ html, body {
   color: var(--c-accent-text);
   display: inline-block;
 }
-
