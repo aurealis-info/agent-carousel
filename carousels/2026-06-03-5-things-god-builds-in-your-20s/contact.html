@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ETHOS — Review Grid — 5 Things God Builds in Your 20s</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #111; font-family: -apple-system, sans-serif; padding: 40px; }
+    h1 { color: #D4B668; font-size: 18px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 32px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .frame { display: flex; flex-direction: column; gap: 8px; }
+    .frame span { color: #666; font-size: 12px; letter-spacing: 0.1em; text-align: center; }
+    iframe {
+      width: 100%;
+      aspect-ratio: 1080 / 1350;
+      border: 1px solid #333;
+      transform-origin: top left;
+      pointer-events: none;
+    }
+    .iframe-wrap {
+      width: 100%;
+      overflow: hidden;
+      aspect-ratio: 1080 / 1350;
+      position: relative;
+    }
+    .iframe-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 1080px;
+      height: 1350px;
+      transform: scale(var(--scale));
+      transform-origin: top left;
+      border: none;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.iframe-wrap').forEach(wrap => {
+        const scale = wrap.offsetWidth / 1080;
+        wrap.style.setProperty('--scale', scale);
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Review — 5 Things God Builds in Your 20s</h1>
+  <div class="grid">
+    <div class="frame">
+      <div class="iframe-wrap"><iframe src="slide-01.html"></iframe></div>
+      <span>01 / Hook</span>
+    </div>
+    <div class="frame">
+      <div class="iframe-wrap"><iframe src="slide-02.html"></iframe></div>
+      <span>02 / Patience in Obscurity</span>
+    </div>
+    <div class="frame">
+      <div class="iframe-wrap"><iframe src="slide-03.html"></iframe></div>
+      <span>03 / Self-Government</span>
+    </div>
+    <div class="frame">
+      <div class="iframe-wrap"><iframe src="slide-04.html"></iframe></div>
+      <span>04 / Kill It</span>
+    </div>
+    <div class="frame">
+      <div class="iframe-wrap"><iframe src="slide-05.html"></iframe></div>
+      <span>05 / Two or Three Men</span>
+    </div>
+    <div class="frame">
+      <div class="iframe-wrap"><iframe src="slide-06.html"></iframe></div>
+      <span>06 / A Prayer That Holds</span>
+    </div>
+    <div class="frame">
+      <div class="iframe-wrap"><iframe src="slide-07.html"></iframe></div>
+      <span>07 / CTA</span>
+    </div>
+  </div>
+</body>
+</html>
