@@ -1,0 +1,39 @@
+name: Auto-publish scheduled carousels
+
+# Calls the aurealis-dashboard's /api/cron/publish endpoint every 15 min so
+# scheduled posts whose slot time has passed get published to IG/TikTok.
+# Lives in this repo (not aurealis-dashboard) because aurealis-dashboard is
+# hosted on GitLab — GitHub Actions only run on GitHub repos.
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: POST /api/cron/publish
+        env:
+          DASHBOARD_URL: ${{ secrets.DASHBOARD_URL }}
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          if [ -z "$DASHBOARD_URL" ] || [ -z "$CRON_SECRET" ]; then
+            echo "::error::DASHBOARD_URL or CRON_SECRET secret not set in this repo."
+            exit 1
+          fi
+          echo "POSTing to $DASHBOARD_URL/api/cron/publish"
+          RESPONSE=$(curl -sS -X POST \
+            -H "Authorization: Bearer $CRON_SECRET" \
+            -H "Content-Type: application/json" \
+            -w "\nHTTP_STATUS:%{http_code}" \
+            "$DASHBOARD_URL/api/cron/publish")
+          STATUS=$(echo "$RESPONSE" | grep -o 'HTTP_STATUS:[0-9]*' | cut -d: -f2)
+          BODY=$(echo "$RESPONSE" | sed 's/HTTP_STATUS:[0-9]*//')
+          echo "Status: $STATUS"
+          echo "Body: $BODY"
+          if [ "$STATUS" != "200" ]; then
+            echo "::error::Cron call failed with $STATUS"
+            exit 1
+          fi
