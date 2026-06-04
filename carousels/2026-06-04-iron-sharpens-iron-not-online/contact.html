@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ETHOS — Iron sharpens iron, not online — Review Grid</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px;
+      background: #161616;
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    }
+    h1 {
+      color: #D4B668;
+      font-size: 18px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 0 0 24px 0;
+      font-weight: 600;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 324px);
+      gap: 20px;
+    }
+    .cell {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cell span {
+      color: rgba(255,255,255,0.45);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    iframe {
+      width: 1080px;
+      height: 1350px;
+      border: none;
+      transform: scale(0.3);
+      transform-origin: top left;
+      display: block;
+      /* shrink the layout footprint to the scaled dimensions */
+      margin-bottom: calc(1350px * -0.7);
+      margin-right: calc(1080px * -0.7);
+    }
+    .cell-wrapper {
+      width: 324px;
+      height: 405px;
+      overflow: hidden;
+      outline: 1px solid rgba(255,255,255,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>ETHOS — Iron sharpens iron, not online — 6 slides</h1>
+  <div class="grid">
+    <div class="cell">
+      <div class="cell-wrapper">
+        <iframe src="slide-01.html" title="Slide 01 — Hook"></iframe>
+      </div>
+      <span>01 / Hook</span>
+    </div>
+    <div class="cell">
+      <div class="cell-wrapper">
+        <iframe src="slide-02.html" title="Slide 02 — Step 1"></iframe>
+      </div>
+      <span>02 / Step 1 — Sharpen, not affirm</span>
+    </div>
+    <div class="cell">
+      <div class="cell-wrapper">
+        <iframe src="slide-03.html" title="Slide 03 — Step 2"></iframe>
+      </div>
+      <span>03 / Step 2 — Confess, not post</span>
+    </div>
+    <div class="cell">
+      <div class="cell-wrapper">
+        <iframe src="slide-04.html" title="Slide 04 — Step 3"></iframe>
+      </div>
+      <span>04 / Step 3 — Contact, not content</span>
+    </div>
+    <div class="cell">
+      <div class="cell-wrapper">
+        <iframe src="slide-05.html" title="Slide 05 — Step 4"></iframe>
+      </div>
+      <span>05 / Step 4 — One man. Real answers.</span>
+    </div>
+    <div class="cell">
+      <div class="cell-wrapper">
+        <iframe src="slide-06.html" title="Slide 06 — CTA"></iframe>
+      </div>
+      <span>06 / CTA — Find your iron.</span>
+    </div>
+  </div>
+</body>
+</html>
