@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ETHOS — Five Things Before 25 — Review Grid</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #161616;
+      padding: 40px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    }
+    h1 {
+      color: #D4B668;
+      font-size: 18px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .frame {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .label {
+      color: #888;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    iframe {
+      width: 270px;
+      height: 337px;
+      border: none;
+      transform: scale(0.25);
+      transform-origin: top left;
+      pointer-events: none;
+    }
+    .iframe-wrap {
+      width: 270px;
+      height: 337px;
+      overflow: hidden;
+      position: relative;
+    }
+    .iframe-wrap iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1080px;
+      height: 1350px;
+      transform: scale(0.25);
+      transform-origin: top left;
+    }
+  </style>
+</head>
+<body>
+  <h1>Five Things Before 25 — Review Grid</h1>
+  <div class="grid">
+    <div class="frame">
+      <div class="label">01 Hook</div>
+      <div class="iframe-wrap"><iframe src="slide-01.html"></iframe></div>
+    </div>
+    <div class="frame">
+      <div class="label">02 Discipline 1</div>
+      <div class="iframe-wrap"><iframe src="slide-02.html"></iframe></div>
+    </div>
+    <div class="frame">
+      <div class="label">03 Discipline 2</div>
+      <div class="iframe-wrap"><iframe src="slide-03.html"></iframe></div>
+    </div>
+    <div class="frame">
+      <div class="label">04 Discipline 3</div>
+      <div class="iframe-wrap"><iframe src="slide-04.html"></iframe></div>
+    </div>
+    <div class="frame">
+      <div class="label">05 Discipline 4</div>
+      <div class="iframe-wrap"><iframe src="slide-05.html"></iframe></div>
+    </div>
+    <div class="frame">
+      <div class="label">06 Discipline 5</div>
+      <div class="iframe-wrap"><iframe src="slide-06.html"></iframe></div>
+    </div>
+    <div class="frame">
+      <div class="label">07 CTA</div>
+      <div class="iframe-wrap"><iframe src="slide-07.html"></iframe></div>
+    </div>
+  </div>
+</body>
+</html>
