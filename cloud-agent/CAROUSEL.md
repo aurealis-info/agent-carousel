@@ -6,12 +6,14 @@ Carousels are the format ETHOS leads with — the post a man saves, returns to, 
 
 ## Carousel types
 
-| Type | Use when | Structure file | Paired template |
-|---|---|---|---|
-| **Teaching** | One idea per slide, explained in depth | `formats/01-teaching.md` | `templates/01-editorial-restrained/` |
-| **List** | A numbered collection of many sharp items | `formats/02-list.md` | `templates/02-editorial-list/` *(built next)* |
+A **format** is the copy structure; a **template** is the look. They're independent — a format can have several templates, and you pick/rotate the template per deck (recorded in `type_pairing_id`), keeping the mix balanced over time.
 
-**Every format:** no CTA slide — the call-to-action is a separate Figma asset appended after rendering — and **the app is never named in any generated slide** (only the bottom-right watermark, which is brand chrome).
+| Format | Use when | Structure file | Template(s) |
+|---|---|---|---|
+| **Teaching** | One idea per slide, explained in depth | `formats/01-teaching.md` | `01-editorial-restrained` · `03-annotated-notebook` |
+| **List** | A numbered collection of many sharp items | `formats/02-list.md` | `02-editorial-list` |
+
+**Every format:** no CTA slide — the call-to-action is a separate Figma asset appended after rendering — and **the app is never named in the generated copy** (only the brand chrome — a small wordmark/handle — carries the name).
 
 ---
 

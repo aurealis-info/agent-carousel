@@ -116,7 +116,7 @@ The watermark stays on the value slides too — it's what ties the brand to the 
 
 The full classes live in `templates/01-editorial-restrained/template.css` (concatenated into `deck.css`). Here's the shape of each — write your real content into them. Every slide is wrapped in the standard HTML doc shell described at the top of this file.
 
-> **These two layouts (hook, step) belong to the `01-editorial-restrained` (teaching) template.** The list format's **cover** and **list-item** layouts + their type scale ship with the `02-editorial-list` template (built next) and aren't documented here yet.
+> **These two layouts (hook, step) belong to the `01-editorial-restrained` template.** Other templates document their own layouts + type scale in their folder's README: `02-editorial-list` (list cover + numbered items) and `03-annotated-notebook` (graph-paper teaching look with gold hand-drawn annotations).
 
 ### 1. Hook
 ```html

@@ -22,7 +22,7 @@ When voice or substance is ambiguous, default to `BRAND.md`. When a layout choic
 
 **1. Pick the format, the topic, and its shape.** First pick the **format** — teaching (`formats/01-teaching.md`) or list (`formats/02-list.md`) — and follow that file for structure and slide roles. Then apply `TOPICS.md`: name the **pillar** + **theme** + **title shape**, the **slide count**, and the **colorway** (alternate to keep it ~50/50 over time — see `TOPICS.md`). Confirm the rotation rule in `TOPICS.md` — vary at least 3 axes from the most recent post, and keep the colorway split near 50/50.
 
-**2. Set up the deck.** Concatenate the colorway tokens + the template **paired with your format** (see the format file's header — teaching → `templates/01-editorial-restrained/`; list → `templates/02-editorial-list/`):
+**2. Set up the deck.** Concatenate the colorway tokens + a template **for your format** (see the format file's header — teaching has two: `templates/01-editorial-restrained/` or `templates/03-annotated-notebook/`; list: `templates/02-editorial-list/`). Pick/rotate the template and record it in `type_pairing_id`:
 ```bash
 SLUG="2026-05-24-what-a-godly-man-does-with-anger"   # date-topic-slug
 mkdir -p "../carousels/$SLUG"
@@ -32,7 +32,7 @@ cat themes/brand-dark.css \
 ```
 Swap `brand-dark.css` → `brand-light.css` for light — the **colorway is uniform across formats**; only the template changes. Append any new custom layout classes to the bottom of the deck's `deck.css` if a topic needs one.
 
-> **Note:** the list template (`templates/02-editorial-list/`) is **built next** — until it ships, only teaching decks are runnable. Swap its path into the `cat` above once it exists.
+> **Note:** the teaching format has two templates (`01-editorial-restrained`, `03-annotated-notebook`) — pick one and rotate them over time. Swap the chosen template's path into the `cat` above.
 
 **3. Write each slide.** Slide count and roles come from your **format file** (teaching: hook + N steps; list: cover + list slides). No CTA slide — that's a separate asset (see the rules below). For each, write the copy (`BRAND.md` voice + `CAROUSEL.md` + your format file) and the body HTML by adapting the reference layout for your format (teaching layouts live in `DESIGN.md`; the list cover/item layouts ship with the `02-editorial-list` template). Save each as a **complete, standalone HTML document**:
 

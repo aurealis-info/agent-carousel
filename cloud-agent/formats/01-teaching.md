@@ -2,8 +2,8 @@
 
 **The original ETHOS carousel.** One idea per slide, explained in depth. The workhorse: a hook that stops the scroll, then 3–5 step slides that each teach one thing well.
 
-- **Paired template:** `templates/01-editorial-restrained/`
-- **`metadata.json` stamp:** `"type_pairing_id": "01-editorial-restrained"`
+- **Templates (pick one, rotate over time):** `templates/01-editorial-restrained/` (Playfair + Inter, solid editorial) or `templates/03-annotated-notebook/` (Lora + Inter, graph-paper grid with gold hand-drawn circle/underline annotations + a `@theethosapp` promo). Both render the same hook → steps copy.
+- **`metadata.json` stamp:** `"type_pairing_id"` = the template you used (`01-editorial-restrained` or `03-annotated-notebook`).
 - **Read `CAROUSEL.md` first** — the shared craft (mission, viewer arc, hook engineering, copy psychology, anti-patterns). This file covers only what's *specific* to the teaching format.
 
 ---

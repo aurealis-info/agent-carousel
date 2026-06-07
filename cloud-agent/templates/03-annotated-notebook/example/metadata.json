@@ -1,0 +1,12 @@
+{
+  "title": "How to Think Like a Disciple in Any Decision",
+  "slug": "example-03-annotated-notebook",
+  "caption": "Example deck for the 03-annotated-notebook template (teaching format).",
+  "tags": ["faith", "discipline", "wisdom"],
+  "pillar": "The Work",
+  "theme": "Think like a disciple, not just on Sunday.",
+  "colorway": "light",
+  "type_pairing_id": "03-annotated-notebook",
+  "dimensions": { "width": 1080, "height": 1350 },
+  "slides": ["slide-01.html", "slide-02.html", "slide-03.html", "slide-04.html", "slide-05.html", "slide-06.html"]
+}
