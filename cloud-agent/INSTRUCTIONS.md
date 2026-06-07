@@ -18,6 +18,8 @@ When voice or substance is ambiguous, default to `BRAND.md`. When a layout choic
 
 ## Workflow (per carousel)
 
+> **Running as a batch?** The cloud Routine (`docs/dispatch.md`) generates a **fixed batch in one run** — currently **6 decks: 2 per template (`01-editorial-restrained`, `03-annotated-notebook`, `02-editorial-list`), 3 dark + 3 light**. The per-carousel workflow below is the loop body — you repeat it once per deck in the batch. The run is **not** finished after the first deck: it's finished only when every deck in the routine's composition exists and passes the checklist. Template and colorway for each deck are assigned by the batch table — don't re-pick them here; just vary the editorial axes (pillar / theme / title shape / topic) across the batch.
+
 **Where you work, where output goes.** Run from this `cloud-agent/` directory — the asset paths below (`themes/`, `templates/`) are relative to it. Your finished deck goes to **`../carousels/<slug>/`** at the repo root: that is the only folder the CI pipeline watches, renders, and publishes. Never write the deck to `cloud-agent/out/` — the pipeline doesn't look there.
 
 **1. Pick the format, the topic, and its shape.** First pick the **format** — teaching (`formats/01-teaching.md`) or list (`formats/02-list.md`) — and follow that file for structure and slide roles. Then apply `TOPICS.md`: name the **pillar** + **theme** + **title shape**, the **slide count**, and the **colorway** (alternate to keep it ~50/50 over time — see `TOPICS.md`). Confirm the rotation rule in `TOPICS.md` — vary at least 3 axes from the most recent post, and keep the colorway split near 50/50.
