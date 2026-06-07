@@ -1,6 +1,6 @@
 # DESIGN — How a Slide Looks and Gets Built
 
-This is the design system you build slides against. It's not a blank canvas and not a rigid template — it's **tokens + a type/spacing scale + 3 reference layouts you adapt**. Compose freely *within* the system; a scroll of ETHOS posts should look unmistakably like one brand.
+This is the design system you build slides against. It's not a blank canvas and not a rigid template — it's **tokens + a type/spacing scale + 2 reference layouts you adapt**. Compose freely *within* the system; a scroll of ETHOS posts should look unmistakably like one brand.
 
 The look: **grounded, editorial, warm** — a well-set magazine page, not a glossy ad. Confident type, generous whitespace, one warm accent, nothing decorative for decoration's sake. Restraint *is* the aesthetic. ("Eggs Theory": belongs to the world he's already trying to live — never fantasy gloss.)
 
@@ -14,7 +14,7 @@ Each slide:
 - is a complete `<!doctype html>` document
 - loads Google Fonts (Inter + Playfair Display) from the CDN
 - links **one** stylesheet: `deck.css` (built once per carousel)
-- contains a single `<div class="slide [hook|step|cta]">…</div>` in its body
+- contains a single `<div class="slide [hook|step]">…</div>` in its body
 
 `deck.css` is built once for the carousel by concatenating the colorway tokens + the base layout classes, then appending any custom classes you need:
 
@@ -27,7 +27,7 @@ cat themes/brand-dark.css \
 
 Swap `brand-dark.css` → `brand-light.css` for the light colorway.
 
-> **Frame contract — owned by `template.css`.** Every slide's root element **must** be `<div class="slide [hook|step|cta]">`. The CSS forces that element to a 1080×1350 frame with `96 90` padding and a flex column. The role class (`hook` / `step` / `cta`) controls vertical alignment. **Don't override `.slide`'s `position`, `width`, `height`, or `padding` in custom CSS** — the frame is system-owned. You own what goes *inside* it.
+> **Frame contract — owned by `template.css`.** Every slide's root element **must** be `<div class="slide [hook|step]">`. The CSS forces that element to a 1080×1350 frame with `96 90` padding and a flex column. The role class (`hook` / `step`) controls vertical alignment. **Don't override `.slide`'s `position`, `width`, `height`, or `padding` in custom CSS** — the frame is system-owned. You own what goes *inside* it.
 
 > **Browser-view surround.** When you open a slide in a browser, you see the 1080×1350 canvas centered against a dark surround (`#161616`). That's by design — the body wrapper isn't part of the slide, just the review frame. Screenshots of `.slide` (Instagram-ready) crop the surround out automatically.
 
@@ -52,11 +52,11 @@ Five colors total: gold `#D4B668`, black, white, creme `#F2EAD9`, and charcoal `
 
 **Gold-by-role:** gold pops on black but washes out on creme. So:
 - **Decoration** (rules, dividers) → `var(--c-accent)` — gold in both colorways.
-- **Readable accent** (step label, big number, CTA trigger, the slide indicator, arrow points) → `var(--c-accent-text)` — gold on dark, **black on light**.
+- **Readable accent** (step label, big number, the slide indicator, arrow points) → `var(--c-accent-text)` — gold on dark, **black on light**.
 
 Use `color: var(--c-accent-text)` for any text/element that must read; `var(--c-accent)` only for decoration. (Tokens already encode this — just pick the right one.)
 
-**When to use which colorway:** *dark* is the default — premium, weighty, nocturnal. *Light* (creme) — calmer, more reflective, "morning." Either is on-brand; vary across the feed.
+**When to use which colorway:** neither is the default — **alternate to keep the feed ~50/50 dark/light over time** (see `TOPICS.md`). *Dark* — premium, weighty, nocturnal. *Light* (creme) — calmer, more reflective, "morning." Both are equally on-brand.
 
 ---
 
@@ -64,8 +64,8 @@ Use `color: var(--c-accent-text)` for any text/element that must read; `var(--c-
 
 Two faces, mirroring the voice — serif = the moment that arrests, bold sans = the truth delivered flat. Don't add others.
 
-- **Playfair Display** (`--font-heading`) — the editorial moments: hook headline, hook subhead (italic), CTA distillation.
-- **Inter** (`--font-body`) — the substance: step labels & titles (heavy, ALL-CAPS), body, points, CTA subline & trigger, indicator, watermark.
+- **Playfair Display** (`--font-heading`) — the editorial moments: hook headline, hook subhead (italic).
+- **Inter** (`--font-body`) — the substance: step labels & titles (heavy, ALL-CAPS), body, points, indicator, watermark.
 - **Anton** (`--font-display`) — heavy display, optional.
 
 Each slide loads them from Google Fonts CDN:
@@ -87,9 +87,6 @@ Each slide loads them from Google Fonts CDN:
 | Step body line | Inter | 400 | 37px / 1.32 | `--c-fg` | one beat per line |
 | Step point (→) | Inter | 500 | 37px | text `--c-fg`, arrow `--c-accent-text` | |
 | Step closing | Inter | 600 | 39px | `--c-fg` | the sendable line |
-| CTA distillation | Playfair | 700 | 132px / 0.98 | `--c-fg` | **2–5 words only** |
-| CTA subline | Inter | 600 | 44px | `--c-fg` @ .9 | the ask |
-| Comment trigger | Inter | 700 | 32px | `--c-accent-text` | UPPERCASE, letter-spaced — keep short, wraps easily |
 | Slide indicator | Inter | 700 | 30px | `--c-accent-text` | letter-spaced, top-left |
 | Watermark | Inter | 600 | 24px | `--c-fg` @ .38 | letter-spaced, bottom-right |
 
@@ -100,7 +97,7 @@ Each slide loads them from Google Fonts CDN:
 ## Spacing & layout
 
 - **Canvas:** 1080 × 1350 (4:5). **Margins:** 96px top/bottom, 90px sides (`.slide` padding — already enforced by `template.css`).
-- **Left-aligned, editorial.** One dominant element per slide; let it breathe. Crowding kills the premium feel. (The CTA slide is the exception — it centers.)
+- **Left-aligned, editorial.** One dominant element per slide; let it breathe. Crowding kills the premium feel.
 - **Chrome on every slide** (don't omit): the indicator top-left, the watermark bottom-right. Both are positioned `absolute` so they sit in the same spot regardless of the slide's content.
 
 ---
@@ -111,13 +108,15 @@ Each slide loads them from Google Fonts CDN:
 <div class="indicator">02 / 06</div>          <!-- top-left; NN / total -->
 <div class="watermark">ETHOS</div>            <!-- bottom-right; always present -->
 ```
-The watermark stays on the value slides too — it's what ties the brand to the value when a man goes looking for who made this. Keep it quiet (it's already faded at .38). The watermark is **brand chrome, not copy** — its presence does not violate the "app name only on CTA" rule.
+The watermark stays on the value slides too — it's what ties the brand to the value when a man goes looking for who made this. Keep it quiet (it's already faded at .38). The watermark is **brand chrome, not copy** — it's the one place the brand name appears, and it stays on every slide.
 
 ---
 
-## The 3 reference layouts (adapt these)
+## The 2 reference layouts (adapt these)
 
 The full classes live in `templates/01-editorial-restrained/template.css` (concatenated into `deck.css`). Here's the shape of each — write your real content into them. Every slide is wrapped in the standard HTML doc shell described at the top of this file.
+
+> **These two layouts (hook, step) belong to the `01-editorial-restrained` (teaching) template.** The list format's **cover** and **list-item** layouts + their type scale ship with the `02-editorial-list` template (built next) and aren't documented here yet.
 
 ### 1. Hook
 ```html
@@ -153,23 +152,12 @@ The full classes live in `templates/01-editorial-restrained/template.css` (conca
 </div>
 ```
 
-### 3. CTA (the only app mention in copy)
-```html
-<div class="slide cta">
-  <div class="indicator">06 / 06</div>
-  <h1 class="cta-distillation">Govern it.</h1>
-  <p class="cta-subline">Download ETHOS — link in bio.</p>
-  <div class="comment-trigger">comment "anger" for the link</div>
-  <div class="watermark">ETHOS</div>
-</div>
-```
-
 ---
 
 ## Building a carousel
 
 1. Pick the colorway → build `deck.css` (tokens + `template.css` + any extras).
-2. For each slide, write a complete HTML file (full doctype, Google Fonts link, `<link rel="stylesheet" href="deck.css">`) adapting the layout for its role (hook / one per step / CTA). Fill real copy; keep the chrome; keep within the type scale.
+2. For each slide, write a complete HTML file (full doctype, Google Fonts link, `<link rel="stylesheet" href="deck.css">`) adapting the layout for its role (hook / one per step). Fill real copy; keep the chrome; keep within the type scale.
 3. Open each HTML in a browser and review. Build `contact.html` (an iframe grid of all slides) for at-a-glance review.
 4. Walk the checklist in `INSTRUCTIONS.md`.
 
@@ -179,7 +167,7 @@ The full classes live in `templates/01-editorial-restrained/template.css` (conca
 
 ## Guardrails
 
-- **1080 × 1350**, always. Content must fit the frame — watch for overflow, especially the 132px CTA distillation (that's why it's 2–5 words).
+- **1080 × 1350**, always. Content must fit the frame — watch for overflow and clipped text.
 - **Tokens, not hex.** Every color via a `var(--c-*)` so the slide survives a colorway swap.
 - **Two faces only** (Playfair + Inter). No new typefaces.
 - **Keep the chrome** (indicator + watermark) on every slide.

@@ -70,6 +70,8 @@ Before you start, look at the most recent carousel in `../carousels/` and **vary
 - **Pillar** (Scripture Applied / The Work / Real Talk / The Vision)
 - **Theme** (which of the 10 in `BRAND.md` it carries)
 - **Title shape** (the five above)
-- **Colorway** (dark / light)
+- **Colorway** (dark / light — kept ~50/50 over time; see below)
 
 A feed that varies all four every post is a feed that stays sharp. A feed that hits the same combo twice in a row is the start of going flat — the audience notices before you do.
+
+**Colorway balance.** Neither colorway is the default — keep the split **~50/50 dark/light over the long run**, within each format (`01-teaching` and `02-list`) and across the feed overall. Beyond rotating it post-to-post, glance at the `colorway` of the last several decks in `../carousels/` and pick whichever pulls the running split back toward even.

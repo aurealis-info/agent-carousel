@@ -1,0 +1,12 @@
+{
+  "title": "9 Places a Man Actually Meets God",
+  "slug": "example-02-list-9-places",
+  "caption": "Example deck for the 02-editorial-list template (not for publishing).",
+  "tags": ["faith", "discipline"],
+  "pillar": "Scripture Applied",
+  "theme": "He meets you in the ordinary.",
+  "colorway": "light",
+  "type_pairing_id": "02-editorial-list",
+  "dimensions": { "width": 1080, "height": 1350 },
+  "slides": ["slide-01.html", "slide-02.html", "slide-03.html"]
+}
