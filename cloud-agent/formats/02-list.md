@@ -39,7 +39,7 @@ Three parts, top to bottom:
 - **Headline** — the **number + the promise**, big serif. The number *is* the hook ("10 Lies…", "12 Things…").
 - **Italic parenthetical** — the twist underneath, in serif italic: *(That Scripture never taught you)*. This is where the curiosity gap snaps shut.
 
-Faith signal is mandatory on the cover — in the headline or the parenthetical (same rule as any ETHOS hook; see `CAROUSEL.md`).
+Faith signal is mandatory on the cover, **in the headline itself** — the number + a faith-coded promise (godly, Scripture, sin, man of God…). The italic parenthetical may reinforce it but can never be the only place it lives (same rule as any ETHOS hook; see `CAROUSEL.md`). A cover whose faith signal sits only in the twist underneath reads as generic self-improvement at a glance — the wrong room.
 
 ---
 
@@ -68,50 +68,50 @@ You'll run several lists across a feed. If "confession to a brother" or "the pho
 
 ## Worked examples (4 finalized lists, ready to build)
 
-Item line in **bold**; the gloss follows the em dash.
+Item line in **bold**, then the gloss as its own short sentence (no em dashes anywhere in ETHOS copy).
 
-### "10 Lies You Inherited About Being a Man" — *(That Scripture never taught you)*
-1. **A real man doesn't need anyone.** — Isolation isn't strength. It's where men rot.
-2. **Provide and you've done your job.** — They need your presence, not just your paycheck.
-3. **Anger means you've lost control.** — Anger's a signal. What you do with it is the test.
-4. **Lust is just how men are wired.** — You were built for desire, not enslaved to it.
-5. **Confidence is the goal.** — Confidence cracks under pressure. Character doesn't.
-6. **Lead by being the loudest.** — The man everyone follows is usually the calmest in the room.
-7. **You're enough exactly as you are.** — You're loved as you are. You're not meant to *stay* as you are.
-8. **Faith is a private thing.** — A faith no one can see is a faith you've never tested.
-9. **Numb it and move on.** — What you bury alive doesn't stay buried. It runs you.
-10. **You'll change when you feel ready.** — You won't feel ready. You'll decide, or you'll drift.
+### "10 Lies You Inherited About Godly Manhood" *(That Scripture never taught you)*
+1. **A real man doesn't need anyone.** Isolation isn't strength. It's where men rot.
+2. **Provide and you've done your job.** They need your presence, not just your paycheck.
+3. **Anger means you've lost control.** Anger's a signal. What you do with it is the test.
+4. **Lust is just how men are wired.** You were built for desire, not enslaved to it.
+5. **Confidence is the goal.** Confidence cracks under pressure. Character doesn't.
+6. **Lead by being the loudest.** The man everyone follows is usually the calmest in the room.
+7. **You're enough exactly as you are.** You're loved as you are. You're not meant to *stay* as you are.
+8. **Faith is a private thing.** A faith no one can see is a faith you've never tested.
+9. **Numb it and move on.** What you bury alive doesn't stay buried. It runs you.
+10. **You'll change when you feel ready.** You won't feel ready. You'll decide, or you'll drift.
 
-### "12 Things to Kill Before You're 25" — *(While it's still easy)*
-1. **Doom scrolling at 2 a.m.** — Nothing you find at 2 a.m. is worth what it costs you at 8.
-2. **The private tab.** — What you feed in the dark feeds on you in the light.
-3. **Waiting to feel motivated.** — Discipline shows up on the days motivation doesn't.
-4. **Performing three versions of yourself.** — Gym, church, group chat — same guy, or none of them are real.
-5. **The "I'll start Monday" voice.** — Monday is a coward's word for *never*.
-6. **Borrowing your worth from the comments.** — A number can't tell you who you are.
-7. **Outrage as a personality.** — Being against everything isn't the same as standing for something.
-8. **Keeping score in your friendships.** — Brotherhood isn't a transaction.
-9. **The group chat that makes you smaller.** — Some rooms you have to leave to grow.
-10. **Comparing your chapter 1 to his chapter 20.** — Envy never finished a race.
-11. **Treating your body like it's disposable.** — It's the only one the work gets done in.
-12. **Quitting the second it goes quiet.** — Most men quit right before it gets good.
+### "12 Sins to Kill Before You're 25" *(While it's still easy)*
+1. **Doom scrolling at 2 a.m.** Nothing you find at 2 a.m. is worth what it costs you at 8.
+2. **The private tab.** What you feed in the dark feeds on you in the light.
+3. **Waiting to feel motivated.** Discipline shows up on the days motivation doesn't.
+4. **Performing three versions of yourself.** Gym, church, group chat. Same guy, or none of them are real.
+5. **The "I'll start Monday" voice.** Monday is a coward's word for *never*.
+6. **Borrowing your worth from the comments.** A number can't tell you who you are.
+7. **Outrage as a personality.** Being against everything isn't the same as standing for something.
+8. **Keeping score in your friendships.** Brotherhood isn't a transaction.
+9. **The group chat that makes you smaller.** Some rooms you have to leave to grow.
+10. **Comparing your chapter 1 to his chapter 20.** Envy never finished a race.
+11. **Treating your body like it's disposable.** It's the only one the work gets done in.
+12. **Quitting the second it goes quiet.** Most men quit right before it gets good.
 
-### "9 Places a Man Actually Meets God" — *(None of them are a Sunday service)*
-1. **The work you do when no one's watching.** — Discipline is a quiet form of worship.
-2. **The apology you don't want to make.** — Pride finally meets grace there.
-3. **The hospital waiting room.** — He's closest when you're most out of control.
-4. **The bottom you swore you'd never hit.** — He meets men in the wreckage, not the highlight reel.
-5. **The wilderness season when nothing's working.** — He did some of His best work in deserts.
-6. **The person you forgave who never said sorry.** — The grace you give is the grace you finally understand.
-7. **The temptation you walked away from.** — Every "no" is a place you met Him.
-8. **The mirror, the morning after a failure.** — Grace hits hardest once you stop pretending.
-9. **The ordinary Tuesday you almost wasted.** — He's not only on the mountaintop. He's in the routine.
+### "9 Places a Man Actually Meets God" *(None of them are a Sunday service)*
+1. **The work you do when no one's watching.** Discipline is a quiet form of worship.
+2. **The apology you don't want to make.** Pride finally meets grace there.
+3. **The hospital waiting room.** He's closest when you're most out of control.
+4. **The bottom you swore you'd never hit.** He meets men in the wreckage, not the highlight reel.
+5. **The wilderness season when nothing's working.** He did some of His best work in deserts.
+6. **The person you forgave who never said sorry.** The grace you give is the grace you finally understand.
+7. **The temptation you walked away from.** Every "no" is a place you met Him.
+8. **The mirror, the morning after a failure.** Grace hits hardest once you stop pretending.
+9. **The ordinary Tuesday you almost wasted.** He's not only on the mountaintop. He's in the routine.
 
-### "7 Disciplines That Outlast Motivation" — *(Pick three, not all seven)*
-1. **Make your bed before you make excuses.** — Win the first rep of the day.
-2. **One page of Scripture before one notification.** — Whoever you feed first wins the day.
-3. **Move your body daily, not perfectly.** — Showing up beats showing off.
-4. **Tell one man the truth this week.** — Light is the only thing that breaks the grip. *("Confess your sins to one another, that you may be healed." — James 5:16)*
-5. **Keep your word to yourself.** — Trusting God starts with trusting you.
-6. **Sit in ten minutes of silence.** — You can't hear Him over your own noise.
-7. **End the day with thanks, not the feed.** — Gratitude is the opposite of scrolling.
+### "7 Godly Disciplines That Outlast Motivation" *(Pick three, not all seven)*
+1. **Make your bed before you make excuses.** Win the first rep of the day.
+2. **One page of Scripture before one notification.** Whoever you feed first wins the day.
+3. **Move your body daily, not perfectly.** Showing up beats showing off.
+4. **Tell one man the truth this week.** Light is the only thing that breaks the grip. *(James 5:16: "Confess your sins to one another, that you may be healed.")*
+5. **Keep your word to yourself.** Trusting God starts with trusting you.
+6. **Sit in ten minutes of silence.** You can't hear Him over your own noise.
+7. **End the day with thanks, not the feed.** Gratitude is the opposite of scrolling.

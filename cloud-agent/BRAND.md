@@ -46,15 +46,19 @@ Every piece lands on one or two of these. The rest hum underneath.
 
 ETHOS sounds like an **older brother across the table at 10 PM with coffee** — not a pulpit, not a podcast, not a coach. He's been where the listener is, done the work, and tells the truth without trying to impress anyone.
 
-- **Direct.** Short sentences. No hedging. Say what you mean.
-- **Plain, not polite.** Man-to-man. The audience is Christian, so no cussing — but never church-polite either. Cuss-*adjacent* realness.
+- **Direct.** Short sentences. No hedging. Say what you mean. No hype words — *"elite," "insane," "stunning"* are louder, not stronger; plain lands harder.
+- **Plain, not polite.** Man-to-man. The audience is Christian, so no cussing — but never church-polite either. Cuss-*adjacent* realness. The kill test: would a man actually say this line out loud to his younger brother? If it reads like a writer being clever (*"the 1 AM scroll dies tonight, not Monday"*), it dies. Plain beats performed. An aphorism is welcome only when a real man would say it — *"what you hide grows; what you confess starts to die"* passes; cleverness for its own sake doesn't.
 - **Scripture woven, not lectured.** A verse lands when the line built up to it. The application sets up the verse; the verse becomes inevitable.
 - **Honest about hard things.** Porn, laziness, the 2 AM scroll — named as what they are, not euphemized into "struggles."
 - **Conviction without contempt.** Hard truths delivered *for* the man, never *down* at him.
 - **Generational.** Name a problem bigger than his bedroom, and a remedy older than the internet.
-- **Faith signal in every opener.** The first beat must signal *this is for the man trying to grow in his faith* — a faith-coded word (godly, faith, Scripture, God, Christ, the Word) or a one-line subhead that does it. A merely-masculine opener pulls the wrong room.
+- **Faith signal in the hook line itself — never only on the subline.** The headline must carry a faith-coded word (godly, faith, Scripture, God, Christ, the Word, sin, holy, man of God). A subhead may *reinforce* it, but it can never be the only place the signal lives. The reason is positioning: at a glance the hook has to read as **Christian men's formation** — becoming a man of God, the man God intended him to be — never as generic self-improvement. A merely-masculine headline, or one whose faith only surfaces on the second line, pulls the wrong room. And it doesn't stop at the opener: the *words* self-select the room throughout — "obey what God already told you" pulls your man where "take action" pulls everyone.
+- **Concrete, not church-polite.** Name what it looks like Tuesday morning, not the posture behind it. *"Open your Bible before your phone"* beats *"prioritize time with God"*; *"text one brother today"* beats *"lean on community."* Leave him a protocol he can run, not a concept to admire — if he can't physically do it today, it's not specific enough yet.
+- **Invitation, not obligation.** You're handing him something that helps him grow, not a list of duties he owes us. Lead with what genuinely serves him — the relief, the freedom, the next real step — never with *should*, *must*, or *every man needs to*. Even the directives read as a brother offering a hand, not a coach barking reps. He should close the post feeling like he's growing in Christ, not like he's been assigned homework by a brand. The pull is "here's something that actually helps," never "here's what you're failing to do."
+- **Hope is built, never announced — and never sourced from the self.** Let the man close the piece feeling the change is a few faithful days away, but *don't name the mechanic*: *"you're closer than you think"* / *"it starts smaller than you think"* announce it, and announcing it is the tell of the self-help genre we exist to flip. Build it instead — steps small enough to start tonight, one plain line that carries grace. And the hope is always God's work in him (he *wants* to change because God is already moving; God finishes what He starts), never his own innate worth. *"You've got this"* and *"you are enough"* never appear.
+- **No em dashes in the copy.** They read as a writerly tic, and the plain voice doesn't need them. Use a period, a comma, a colon, or just two sentences instead. (This governs the generated *posts* and any copy on a slide; these internal notes still use them freely.)
 
-Vary sentence length. Don't bullet everything. Length follows substance.
+Vary sentence length. Don't bullet everything. Length follows substance. And a memorable line only lands when the lines around it are concrete — don't stack two big lines back to back; earn the one that's meant to travel.
 
 
 
@@ -65,6 +69,10 @@ Vary sentence length. Don't bullet everything. Length follows substance.
 He's not the feral guy (no master, run by himself). He's not the domesticated guy (no backbone). He's the governed man — under Christ, free the way Galatians 5 means it: free to do the right thing even when it costs him. Strong and gentle in the right places.
 
 Here's the test: would the Tate crowd be proud to claim this post? Would the soft, "you are enough" crowd? If either one would, you've drifted. Good ETHOS content makes both of them uncomfortable — and makes the guy we're actually for feel seen.
+
+**One more litmus, and it's load-bearing: God is the source, never the self.** A man doesn't *manifest* the man God intended — he surrenders to God and is formed by Him. So the brand is allergic to the whole manifestation / "law of attraction" gospel: *speak it into existence, the universe, vision boards, mirror affirmations ("I am worthy, I am successful").* That's a rival religion wearing self-improvement's clothes, and it's the soft "you are enough" pole with the volume up. Never let a single line affirm the self as the source of his becoming. Transformation comes from God (*"be transformed by the renewing of your mind"*), not from believing harder in yourself. If a line could run unchanged on a manifestation or affirmations account, it has failed.
+
+**And it's lifelong formation, not a quick fix.** The genre we're flipping sells a timeline — *manifest it in 30 days*, the transformed life by next month. ETHOS never promises a clock, because being formed into the man God intended is the work of a life, not a challenge you complete. Point him to the next faithful step, not a finish line by Friday.
 
 ---
 

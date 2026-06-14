@@ -33,7 +33,7 @@ The viewer's arc: **Stop** (the hook hits) → **Stay** (the value is real and s
 - **Avoid the command frame** — "Stop X / Do Y" triggers resistance. Mirror the pattern he's already in before you direct. Description over prescription.
 - **Specificity beats generality** — the Tuesday at 3 PM beats "struggle." Concrete is what makes him think *"that's me."*
 - **Self-selection** — make the *right* man stop hard; let the wrong one keep scrolling. Don't try to stop everyone.
-- **Faith signal is mandatory** — slide 1 must self-select *the man trying to grow in his faith*: a faith-coded word in the hook (godly, faith, Scripture, God, Christ, the Word) or a one-line subhead that does it. Without it, the hook pulls a generic masculine audience — the wrong room.
+- **Faith signal is mandatory — in the hook line, not the subhead.** Slide 1 must self-select *the man trying to grow in his faith*: a faith-coded word (godly, faith, Scripture, God, Christ, the Word, sin, holy, man of God) **in the headline itself**. A subhead may reinforce it but can never be the only carrier — at a glance the post has to read as Christian men's formation, not generic self-improvement. Without it, the hook pulls a generic masculine audience — the wrong room.
 
 ---
 

@@ -24,7 +24,7 @@ Pick the count the topic actually needs; don't pad to a number, don't cram two i
 ## Slide 1 — the Hook
 
 - **The hook line:** 2–6 words, or a short line plus a one-sentence subhead. A pain point or curiosity gap, **not the topic name**.
-- **Faith signal is mandatory** (see `CAROUSEL.md` → Hook engineering).
+- **Faith signal is mandatory — in the hook line, not the subhead** (see `CAROUSEL.md` → Hook engineering). The faith-coded word lives in the headline; the subhead can reinforce it but never carries it alone.
 - **Layout:** the `hook` role in `DESIGN.md` (hook-headline + rule + subhead).
 
 ---
