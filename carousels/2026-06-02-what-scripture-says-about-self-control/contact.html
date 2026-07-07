@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ETHOS — Self-Control — Review Grid</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px;
+      background: #161616;
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    }
+    h1 {
+      color: #D4B668;
+      font-size: 18px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin: 0 0 24px 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .cell {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .label {
+      color: #888;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    iframe {
+      width: 100%;
+      aspect-ratio: 1080 / 1350;
+      border: none;
+      transform-origin: top left;
+    }
+    .frame-wrap {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    .frame-wrap iframe {
+      width: 1080px;
+      height: 1350px;
+      transform: scale(var(--s));
+      transform-origin: top left;
+      border: none;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.frame-wrap').forEach(wrap => {
+        const s = wrap.offsetWidth / 1080;
+        wrap.style.setProperty('--s', s);
+        wrap.style.height = (1350 * s) + 'px';
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Review — What Scripture says about self-control (6 slides)</h1>
+  <div class="grid">
+    <div class="cell">
+      <div class="label">01 / Hook</div>
+      <div class="frame-wrap"><iframe src="slide-01.html"></iframe></div>
+    </div>
+    <div class="cell">
+      <div class="label">02 / Step 1 — Fruit, not a muscle</div>
+      <div class="frame-wrap"><iframe src="slide-02.html"></iframe></div>
+    </div>
+    <div class="cell">
+      <div class="label">03 / Step 2 — What it runs on</div>
+      <div class="frame-wrap"><iframe src="slide-03.html"></iframe></div>
+    </div>
+    <div class="cell">
+      <div class="label">04 / Step 3 — Where it falls apart</div>
+      <div class="frame-wrap"><iframe src="slide-04.html"></iframe></div>
+    </div>
+    <div class="cell">
+      <div class="label">05 / Step 4 — The root practice</div>
+      <div class="frame-wrap"><iframe src="slide-05.html"></iframe></div>
+    </div>
+    <div class="cell">
+      <div class="label">06 / CTA</div>
+      <div class="frame-wrap"><iframe src="slide-06.html"></iframe></div>
+    </div>
+  </div>
+</body>
+</html>
