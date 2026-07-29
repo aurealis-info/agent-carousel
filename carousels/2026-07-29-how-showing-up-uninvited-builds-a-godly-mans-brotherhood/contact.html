@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Contact sheet — How Showing Up Uninvited Builds a Godly Man's Brotherhood</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      background: #161616;
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    }
+    h1 {
+      color: #f2ead9;
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 24px 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
+    .cell {
+      background: #000;
+      border-radius: 6px;
+      overflow: hidden;
+      width: 100%;
+    }
+    .frame-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 125%; /* 1350/1080 */
+    }
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1080px;
+      height: 1350px;
+      border: 0;
+      transform: scale(0.2222);
+      transform-origin: top left;
+    }
+    .label {
+      color: #f2ead9;
+      opacity: 0.6;
+      font-size: 12px;
+      text-align: center;
+      padding: 6px 0 0 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>How Showing Up Uninvited Builds a Godly Man's Brotherhood — 5 slides</h1>
+  <div class="grid">
+    <div class="cell">
+      <div class="frame-wrap"><iframe src="slide-01.html"></iframe></div>
+      <p class="label">01 — hook</p>
+    </div>
+    <div class="cell">
+      <div class="frame-wrap"><iframe src="slide-02.html"></iframe></div>
+      <p class="label">02 — step 1</p>
+    </div>
+    <div class="cell">
+      <div class="frame-wrap"><iframe src="slide-03.html"></iframe></div>
+      <p class="label">03 — step 2</p>
+    </div>
+    <div class="cell">
+      <div class="frame-wrap"><iframe src="slide-04.html"></iframe></div>
+      <p class="label">04 — step 3</p>
+    </div>
+    <div class="cell">
+      <div class="frame-wrap"><iframe src="slide-05.html"></iframe></div>
+      <p class="label">05 — step 4</p>
+    </div>
+  </div>
+</body>
+</html>
