@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Contact sheet — How One Text Tonight Starts Killing the Sin You've Been Managing</title>
+  <style>
+    html, body { margin: 0; padding: 0; background: #161616; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 324px);
+      gap: 24px;
+      padding: 24px;
+    }
+    .cell {
+      position: relative;
+      width: 324px;
+      height: 405px;
+      overflow: hidden;
+      border-radius: 6px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      background: #000;
+    }
+    .cell iframe {
+      width: 1080px;
+      height: 1350px;
+      border: 0;
+      transform: scale(0.3);
+      transform-origin: top left;
+    }
+    .label {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      color: #fff;
+      font: 600 13px -apple-system, sans-serif;
+      background: rgba(0,0,0,0.6);
+      padding: 2px 8px;
+      border-radius: 4px;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <div class="cell"><iframe src="slide-01.html"></iframe><div class="label">01 hook</div></div>
+    <div class="cell"><iframe src="slide-02.html"></iframe><div class="label">02 step 1</div></div>
+    <div class="cell"><iframe src="slide-03.html"></iframe><div class="label">03 step 2</div></div>
+    <div class="cell"><iframe src="slide-04.html"></iframe><div class="label">04 step 3</div></div>
+    <div class="cell"><iframe src="slide-05.html"></iframe><div class="label">05 step 4</div></div>
+  </div>
+</body>
+</html>
