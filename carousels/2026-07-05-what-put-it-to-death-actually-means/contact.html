@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Contact sheet — What Put It To Death Actually Means</title>
+  <style>
+    html, body { margin: 0; padding: 24px; background: #161616; font-family: sans-serif; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+    .cell {
+      background: #000;
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+    .cell iframe {
+      width: 1080px;
+      height: 1350px;
+      border: 0;
+      transform: scale(0.19);
+      transform-origin: top left;
+      display: block;
+    }
+    .cell .frame {
+      width: 205px;
+      height: 256.5px;
+      overflow: hidden;
+      position: relative;
+    }
+    .label {
+      color: #ccc;
+      font-size: 12px;
+      text-align: center;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <div class="cell">
+      <div class="frame"><iframe src="slide-01.html"></iframe></div>
+      <div class="label">slide-01.html — hook</div>
+    </div>
+    <div class="cell">
+      <div class="frame"><iframe src="slide-02.html"></iframe></div>
+      <div class="label">slide-02.html — step 1</div>
+    </div>
+    <div class="cell">
+      <div class="frame"><iframe src="slide-03.html"></iframe></div>
+      <div class="label">slide-03.html — step 2</div>
+    </div>
+    <div class="cell">
+      <div class="frame"><iframe src="slide-04.html"></iframe></div>
+      <div class="label">slide-04.html — step 3</div>
+    </div>
+    <div class="cell">
+      <div class="frame"><iframe src="slide-05.html"></iframe></div>
+      <div class="label">slide-05.html — step 4</div>
+    </div>
+  </div>
+</body>
+</html>
