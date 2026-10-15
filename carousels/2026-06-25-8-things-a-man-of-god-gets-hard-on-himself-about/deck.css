@@ -1,0 +1,141 @@
+/* ETHOS — brand-light.css — tokens only.
+   Visual layout lives in template.css. Never hardcode hex in a slide. */
+
+:root {
+  /* Palette — five colors */
+  --c-bg:          #F2EAD9;
+  --c-fg:          #000000;
+  --c-accent:      #D4B668;
+  --c-accent-text: #000000;
+  --c-on-accent:   #000000;
+  --c-muted:       #262626;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', 'Iowan Old Style', Georgia, serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Anton', 'Inter', sans-serif;
+}
+
+/* ============================================================
+   ETHOS — template.css — 02 editorial-list
+   ============================================================ */
+
+:root {
+  --font-serif:  'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --font-chrome: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--c-bg);
+  color: var(--c-fg);
+  font-family: var(--font-serif);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+.slide {
+  position: relative;
+  width: 1080px;
+  height: 1350px;
+  background: var(--c-bg);
+  color: var(--c-fg);
+  padding: 96px 90px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.eyebrow {
+  position: absolute;
+  top: 96px;
+  left: 90px;
+  font-family: var(--font-chrome);
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-fg);
+  opacity: 0.85;
+}
+
+.slide.cover {
+  justify-content: center;
+}
+
+.cover-headline {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 96px;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  margin: 0;
+  max-width: 920px;
+  color: var(--c-fg);
+}
+.cover-headline .num {
+  color: var(--c-accent-text);
+}
+
+.cover-rule {
+  width: 200px;
+  height: 4px;
+  background: var(--c-accent);
+  border: 0;
+  margin: 46px 0 38px 0;
+}
+
+.cover-sub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 46px;
+  line-height: 1.25;
+  margin: 0;
+  max-width: 840px;
+  color: var(--c-fg);
+  opacity: 0.78;
+}
+
+.slide.list {
+  justify-content: center;
+}
+
+.list-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+  max-width: 920px;
+}
+
+.list-item .line {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 41px;
+  line-height: 1.16;
+  margin: 0;
+  color: var(--c-fg);
+}
+.list-item .num {
+  color: var(--c-accent-text);
+  font-weight: 600;
+}
+
+.list-item .gloss {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.3;
+  margin: 9px 0 0 0;
+  max-width: 880px;
+  color: var(--c-fg);
+  opacity: 0.72;
+}
+.list-item .gloss .ref {
+  font-style: italic;
+}
